@@ -8,7 +8,8 @@
     <xs:annotation>
       <xs:documentation>
         Default page sizes as defined in libHaru include files.
-        Only reports with the same page format for all report pages are supported (by now, at least)
+        Only reports with the same page format for all report pages are
+        supported (by now, at least)
       </xs:documentation>
     </xs:annotation>
     <xs:restriction base="xs:string">
@@ -27,27 +28,83 @@
     </xs:restriction>
   </xs:simpleType>
 
-  <xs:complexType name="ReportPage">
-    <xs:sequence>
-      <xs:element name="header" minOccurs="0" maxOccurs="1"/>
-      <xs:element name="data"/>
-      <xs:element name="footer" minOccurs="0" maxOccurs="1"/>
+  <xs:complexType name="textElement">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="x" type="xs:float"/>
+        <xs:attribute name="y" type="xs:float"/>
+        <xs:attribute name="fontName" type="xs:string"/>
+        <xs:attribute name="fontSize" type="xs:integer"/>
+        <xs:attribute name="fontStyle" type="xs:string"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:complexType name="shapeElement">
+    <xs:attribute name="type">
+      <xs:simpleType>
+        <xs:restriction base="xs:string">
+          <xs:enumeration value="rectangle"/>
+          <xs:enumeration value="circle"/>
+        </xs:restriction>
+      </xs:simpleType>
+    </xs:attribute>
+    <xs:attribute name="x" type="xs:float"/>
+    <xs:attribute name="y" type="xs:float"/>
+    <xs:attribute name="width" type="xs:float"/>
+    <xs:attribute name="height" type="xs:float"/>
+  </xs:complexType>
+
+  <xs:complexType name="imageElement">
+    <xs:attribute name="src" type="xs:string"/>
+    <xs:attribute name="x" type="xs:float"/>
+    <xs:attribute name="y" type="xs:float"/>
+    <xs:attribute name="width" type="xs:float"/>
+    <xs:attribute name="height" type="xs:float"/>
+  </xs:complexType>
+
+  <xs:complexType name="pageBlock">
+    <xs:annotation>
+      <xs:documentation>
+        Represents a single page block. A block is a container for shapes,
+        labels and other text/graphical elements.
+      </xs:documentation>
+    </xs:annotation>
+    <xs:sequence minOccurs="0" maxOccurs="unbounded">
+      <xs:choice>
+        <xs:element name="text" type="textElement"/>
+        <xs:element name="label" type="textElement"/>
+        <xs:element name="shape" type="shapeElement"/>
+        <xs:element name="image" type="imageElement"/>
+      </xs:choice>
     </xs:sequence>
   </xs:complexType>
 
-  <xs:element name="report">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element name="frontPage" type="ReportPage" minOccurs="0"/>
-        <xs:element name="firstPage" type="ReportPage" minOccurs="0"/>
-        <xs:element name="dataPage"  type="ReportPage"/>
-        <xs:element name="lastPage"  type="ReportPage" minOccurs="0"/>
-      </xs:sequence>
-      <xs:attribute name="pageFormat" type="TPageFormat" default="a4"/>
-      <xs:attribute name="marginTop"    type="xs:float"/>
-      <xs:attribute name="marginBottom" type="xs:float"/>
-      <xs:attribute name="marginLeft"   type="xs:float"/>
-      <xs:attribute name="marginRight"  type="xs:float"/>
-    </xs:complexType>
-  </xs:element>
+  <xs:complexType name="ReportPage">
+    <xs:sequence>
+      <xs:element name="block" type="pageBlock" maxOccurs="unbounded" />
+    </xs:sequence>
+    <!-- each report page can override the report settings for page format -->
+    <xs:attribute name="pageFormat" type="TPageFormat"/>
+    <xs:attribute name="marginTop"    type="xs:float"/>
+    <xs:attribute name="marginBottom" type="xs:float"/>
+    <xs:attribute name="marginLeft"   type="xs:float"/>
+    <xs:attribute name="marginRight"  type="xs:float"/>
+  </xs:complexType>
+
+  <xs:complexType name="reportType">
+    <xs:sequence>
+      <xs:element name="frontPage" type="ReportPage" minOccurs="0"/>
+      <xs:element name="firstPage" type="ReportPage" minOccurs="0"/>
+      <xs:element name="dataPage"  type="ReportPage"/>
+      <xs:element name="lastPage"  type="ReportPage" minOccurs="0"/>
+    </xs:sequence>
+    <xs:attribute name="pageFormat" type="TPageFormat" default="a4"/>
+    <xs:attribute name="marginTop"    type="xs:float" default="0"/>
+    <xs:attribute name="marginBottom" type="xs:float" default="0"/>
+    <xs:attribute name="marginLeft"   type="xs:float" default="0"/>
+    <xs:attribute name="marginRight"  type="xs:float" default="0"/>
+  </xs:complexType>
+
+  <xs:element name="report" type="reportType"/>
 </xs:schema>

@@ -6,20 +6,13 @@
         marginLeft="5"
         marginRight="5">
   <frontPage>
-    <header>
-      <rect x="0" y="0" width="100%" height="100%">
-        <text hAlign="center" vAlign="center" fontName="Helvetica" size="10" style="italic">
-          Cover page
-        </text>
-      </rect>
-    </header>
-    <data/>
+    <block>
+      <text x="15" y="15" fontName="Helvetica" fontSize="20" fontStyle="italic">Cover Page</text>
+      <shape type="rectangle" x="10" y="10" width="45" height="50"/>
+    </block>
   </frontPage>
-  
+
   <dataPage>
-    <header/>
-    <data>
-      <!-- TODO check how to describe report table -->
-    </data>
+    <block/>
   </dataPage>
 </report>
