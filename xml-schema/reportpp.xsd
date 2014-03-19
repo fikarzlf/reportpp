@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="https://github.com/mmickey/reportpp"
+           xmlns="https://github.com/mmickey/reportpp" 
+           elementFormDefault="qualified">
+
+  <xs:simpleType name="TPageFormat">
+    <xs:annotation>
+      <xs:documentation>
+        Default page sizes as defined in libHaru include files.
+        Only reports with the same page format for all report pages are supported (by now, at least)
+      </xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="letter"/>
+      <xs:enumeration value="legal"/>
+      <xs:enumeration value="a3"/>
+      <xs:enumeration value="a4"/>
+      <xs:enumeration value="a5"/>
+      <xs:enumeration value="b4"/>
+      <xs:enumeration value="b5"/>
+      <xs:enumeration value="executive"/>
+      <xs:enumeration value="us4x6"/>
+      <xs:enumeration value="us4x8"/>
+      <xs:enumeration value="us5x7"/>
+      <xs:enumeration value="comm10"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="ReportPage">
+    <xs:sequence>
+      <xs:element name="header" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="data"/>
+      <xs:element name="footer" minOccurs="0" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:element name="report">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="frontPage" type="ReportPage" minOccurs="0"/>
+        <xs:element name="firstPage" type="ReportPage" minOccurs="0"/>
+        <xs:element name="dataPage"  type="ReportPage"/>
+        <xs:element name="lastPage"  type="ReportPage" minOccurs="0"/>
+      </xs:sequence>
+      <xs:attribute name="pageFormat" type="TPageFormat" default="a4"/>
+      <xs:attribute name="marginTop"    type="xs:float"/>
+      <xs:attribute name="marginBottom" type="xs:float"/>
+      <xs:attribute name="marginLeft"   type="xs:float"/>
+      <xs:attribute name="marginRight"  type="xs:float"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
