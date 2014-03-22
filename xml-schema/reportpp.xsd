@@ -40,15 +40,15 @@
     </xs:simpleContent>
   </xs:complexType>
 
+  <xs:simpleType name="shapeType">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="rectangle"/>
+      <xs:enumeration value="circle"/>
+    </xs:restriction>
+  </xs:simpleType>
+
   <xs:complexType name="shapeElement">
-    <xs:attribute name="type">
-      <xs:simpleType>
-        <xs:restriction base="xs:string">
-          <xs:enumeration value="rectangle"/>
-          <xs:enumeration value="circle"/>
-        </xs:restriction>
-      </xs:simpleType>
-    </xs:attribute>
+    <xs:attribute name="type" type="shapeType"/>
     <xs:attribute name="x" type="xs:float"/>
     <xs:attribute name="y" type="xs:float"/>
     <xs:attribute name="width" type="xs:float"/>
@@ -70,14 +70,12 @@
         labels and other text/graphical elements.
       </xs:documentation>
     </xs:annotation>
-    <xs:sequence minOccurs="0" maxOccurs="unbounded">
-      <xs:choice>
-        <xs:element name="text" type="textElement"/>
-        <xs:element name="label" type="textElement"/>
-        <xs:element name="shape" type="shapeElement"/>
-        <xs:element name="image" type="imageElement"/>
-      </xs:choice>
-    </xs:sequence>
+    <xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="text" type="textElement"/>
+      <xs:element name="label" type="textElement"/>
+      <xs:element name="shape" type="shapeElement"/>
+      <xs:element name="image" type="imageElement"/>
+    </xs:choice>
   </xs:complexType>
 
   <xs:complexType name="ReportPage">
