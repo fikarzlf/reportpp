@@ -11,3 +11,4 @@ This allow the user to edit the configuration (manually or throug an automated i
 Dependencies
 ------------
 Actually the only choice made is to use the haru library (http://libharu.org) as a base for PDF generation.
+xsdcxx tool by codesynthesis (http://codesynthesis.com/projects/xsd) is used to generate XML config file parser.
