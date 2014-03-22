@@ -4,7 +4,7 @@
            xmlns="https://github.com/mmickey/reportpp" 
            elementFormDefault="qualified">
 
-  <xs:simpleType name="TPageFormat">
+  <xs:simpleType name="tPageFormat">
     <xs:annotation>
       <xs:documentation>
         Default page sizes as defined in libHaru include files.
@@ -83,7 +83,7 @@
       <xs:element name="block" type="pageBlock" maxOccurs="unbounded" />
     </xs:sequence>
     <!-- each report page can override the report settings for page format -->
-    <xs:attribute name="pageFormat" type="TPageFormat"/>
+    <xs:attribute name="pageFormat" type="tPageFormat"/>
     <xs:attribute name="marginTop"    type="xs:float"/>
     <xs:attribute name="marginBottom" type="xs:float"/>
     <xs:attribute name="marginLeft"   type="xs:float"/>
@@ -97,7 +97,7 @@
       <xs:element name="dataPage"  type="ReportPage"/>
       <xs:element name="lastPage"  type="ReportPage" minOccurs="0"/>
     </xs:sequence>
-    <xs:attribute name="pageFormat" type="TPageFormat" default="a4"/>
+    <xs:attribute name="pageFormat" type="tPageFormat" default="a4"/>
     <xs:attribute name="marginTop"    type="xs:float" default="0"/>
     <xs:attribute name="marginBottom" type="xs:float" default="0"/>
     <xs:attribute name="marginLeft"   type="xs:float" default="0"/>
