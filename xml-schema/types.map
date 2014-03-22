@@ -1,0 +1,8 @@
+namespace https://github.com/mmickey/reportpp
+{
+  include "types/PageFormat.hpp";
+  tPageFormat ::reportpp::PageFormat;
+
+  include "types/Graphics.hpp";
+  shapeType ::reportpp::ShapeType;
+}
