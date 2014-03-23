@@ -3,7 +3,7 @@
 
 namespace reportpp {
 
-enum PageFormat {
+enum /* class */ PageFormat {
   letter,
   legal,
   a3,

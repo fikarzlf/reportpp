@@ -3,7 +3,7 @@
 
 namespace reportpp {
 
-enum class ShapeType {
+enum /* class */ ShapeType {
   RECTANGLE,
   CIRCLE
 };
