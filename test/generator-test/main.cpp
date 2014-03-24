@@ -1,6 +1,5 @@
-#include <ReportGen.hpp>
-
-#include <operation/Rectangle.hpp>
+#include <reportpp/ReportGen.hpp>
+#include <reportpp/operation/Rectangle.hpp>
 
 PageExecutor createFrontPage() {
   BlockExecutor bEx;
