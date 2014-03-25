@@ -3,6 +3,7 @@
 
 #include "Operation.hpp"
 
+/// Draws a simple rectangle using the previously defined graphics settings.
 class RectangleOp: public Operation {
 public:
   RectangleOp(float x, float y, float w, float h):

@@ -4,8 +4,14 @@
 #include "../ReportGlobals.hpp"
 
 /** Represents single operation over the pdf document.
- * The \c emit() method actually executes the inlined operation, using the
- * provided handler.
+ * Three methods needs to be implemented:
+ * - \c init which is called at the begin of page creation
+ * - \c end  which is called at the end of page creation, before passing to the
+ * next page
+ * - \c finalize which is called at document finalization, when all pages are
+ * created and filled with input data. This stage may be useful, as an example,
+ * for printing the number of pages available in the document or for creating
+ * an index.
  */
 class Operation {
 public:

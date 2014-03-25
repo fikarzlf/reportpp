@@ -3,14 +3,11 @@
 
 #include "Operation.hpp"
 
-/** Represents single operation over the pdf document.
- * The \c emit() method actually executes the inlined operation, using the
- * provided handler.
- */
+/// Completes a graphic drawing operation using the \c HPDF_Page_Stroke method.
 class StrokeOp: public Operation {
 public:
-  virtual void init    (ReportGlobals &glob) { }
-  virtual void end     (ReportGlobals &glob) { HPDF_Page_Stroke(glob.pages.back()); }
+  virtual void init    (ReportGlobals &glob) { HPDF_Page_Stroke(glob.pages.back()); }
+  virtual void end     (ReportGlobals &glob) { }
   virtual void finalize(ReportGlobals &glob) { }
 };
 
