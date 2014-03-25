@@ -1,18 +1,18 @@
 #include <reportpp/ReportGen.hpp>
 #include <reportpp/operation/Rectangle.hpp>
+#include <reportpp/operation/Stroke.hpp>
 
-PageExecutor createFrontPage() {
-  BlockExecutor bEx;
+void initFrontPage(PageExecutor &fp) {
+  BlockExecutor &bEx = fp.addBlock();
   bEx.appendOperation(RectangleOp(15, 10, 30, 45));
-  PageExecutor pEx;
-  pEx.appendBlock(bEx);
-  return pEx;
+  bEx.appendOperation(StrokeOp());
 }
 
 int main() {
   ReportGen gen;
-  gen.setFrontPage(createFrontPage());
-  std::list< std::string > record;
+  initFrontPage(gen.getFrontPage());
+  gen.addDataPage();
+  std::list< std::string > record = { "ciao" };
   gen.addRecord(record);
   gen.finalizeDocument();
   gen.saveToFile("report.pdf");

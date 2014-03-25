@@ -28,24 +28,7 @@ public:
   DataPageExecutor() { }
   ~DataPageExecutor() { }
 
-//   void appendBlock(const BlockExecutor &block) {
-//     blocks_.emplace_back(block);
-//   }
-// 
-//   void init(ReportGlobals &glob) {
-//     std::for_each(blocks_.begin(), blocks_.end(), [](BlockExecutor &block, ReportGlobals &glob){ block.init(glob); });
-//   }
-// 
-//   void end(ReportGlobals &glob) {
-//     std::for_each(blocks_.begin(), blocks_.end(), [](BlockExecutor &block, ReportGlobals &glob){ block.end(glob); });
-//   }
-// 
-//   void finalize(ReportGlobals &glob) {
-//     std::for_each(blocks_.begin(), blocks_.end(), [](BlockExecutor &block, ReportGlobals &glob){ block.finalize(glob); });
-//   }
-// 
-// private:
-//   std::list< BlockExecutor > blocks_;
+  bool addRecord(ReportGlobals &globals, const std::list< std::string > &record) { return true; }
 };
 
 #endif /* ifndef DATAPAGE_EXECUTOR_HPP */

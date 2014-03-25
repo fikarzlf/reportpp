@@ -18,7 +18,9 @@
  Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#include "ReportGen.hpp"
+#include <cassert>
+#include <sstream>
+#include "../include/reportpp/ReportGen.hpp"
 
 // error handling method
 void hpdf_error_handler(HPDF_STATUS error_no, HPDF_STATUS detail_no, void *user_data) {
@@ -28,11 +30,8 @@ void hpdf_error_handler(HPDF_STATUS error_no, HPDF_STATUS detail_no, void *user_
   throw std::runtime_error(strs.str());
 }
 
-class ReportGen {
-public:
 ReportGen::ReportGen():
-  curDataPage_(data_.end()),
-  hasFirstPage(false),
+  hasFirstPage_(false),
   isFinalized(false)
 { }
 
@@ -40,22 +39,30 @@ ReportGen::~ReportGen() {
   if (nullptr != globals.pdf) HPDF_Free(globals.pdf);
 }
 
-void ReportGen::setFrontPage(const PageExecutor &front) {
-  front_ = new PageExecutor(front);
+PageExecutor &ReportGen::getFrontPage() {
+  if (nullptr == frontPage_) {
+    frontPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
+  }
+  return *frontPage_;
 }
 
-void ReportGen::setFirstPage(const DataPageExecutor &first) {
-  hasFirstPage = true;
-  assert(0 == dataPages_.size());
-  addDataPage(first);
+PageExecutor &ReportGen::getFirstPage() {
+  if (!hasFirstPage_) {
+    dataPages_.emplace_back(new DataPageExecutor());
+  }
+  return *(dataPages_.front());
 }
 
-void ReportGen::addDataPage(const DataPageExecutor &page) {
-  data_.emplace_back(new DataPageExecutor(page));
+PageExecutor &ReportGen::addDataPage() {
+  dataPages_.emplace_back(new DataPageExecutor());
+  return *(dataPages_.back());
 }
 
-void ReportGen::setLastPage(const PageExecutor &last) {
-  last_ = new PageExecutor(last);
+PageExecutor &ReportGen::getLastPage() {
+  if (nullptr == lastPage_) {
+    lastPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
+  }
+  return *(lastPage_);
 }
 
 void ReportGen::setReportHeaders(const std::list< std::string > &headers) {
@@ -64,14 +71,14 @@ void ReportGen::setReportHeaders(const std::list< std::string > &headers) {
 
 void ReportGen::addRecord(const std::list< std::string > &record) {
   if (nullptr == globals.pdf) initPdfDocument();
-  bool ok = curDataPage_->addRecord(globals, record);
+  bool ok = (*curDataPage_)->addRecord(globals, record);
   if (!ok) {
     // not enough room in current page for the record
-    curDataPage_->end(globals);
+    (*curDataPage_)->end(globals);
     moveItrToNextPage();
-    ok = curDataPage_->addRecord(globals, record);
+    ok = (*curDataPage_)->addRecord(globals, record);
     assert(ok); // otherwise means that even on a empty data page there is not enought room for this record
-    curDataPage_->init(globals);
+    (*curDataPage_)->init(globals);
   }
 }
 
@@ -80,13 +87,13 @@ void ReportGen::finalizeDocument() {
     lastPage_->init(globals);
     lastPage_->end(globals);
   }
-  if (nullptr != frontPage_) frontPage_->finalize(globals);
-  curDataPage_ = dataPages_->begin();
+  if (nullptr != frontPage_) frontPage_->finalize(globals, -1);
+  curDataPage_ = dataPages_.begin();
   for (unsigned int index = 0; index < globals.pages.size(); ++index) {
-    curDataPage_->finalize(globals, index);
+    (*curDataPage_)->finalize(globals, index);
     moveItrToNextPage();
   }
-  lastPage_->finalize(glob);
+  if (nullptr != lastPage_) lastPage_->finalize(globals, -1);
   isFinalized = true;
 }
 
@@ -102,13 +109,13 @@ void ReportGen::initPdfDocument() {
     frontPage_->end(globals);
   }
   curDataPage_ = dataPages_.begin();
-  curDataPage_->init(globals);
+  (*curDataPage_)->init(globals);
 }
 
 void ReportGen::moveItrToNextPage() {
   curDataPage_++;
   if (dataPages_.end() == curDataPage_) {
     curDataPage_ = dataPages_.begin();
-    if (hasFirstPage) curDataPage_++; // skip custom first page when looping
+    if (hasFirstPage_) curDataPage_++; // skip custom first page when looping
   }
 }

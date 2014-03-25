@@ -28,11 +28,13 @@ public:
   PageExecutor() { }
   ~PageExecutor() { }
 
-  void appendBlock(const BlockExecutor &block) {
-    blocks_.emplace_back(new BlockExecutor(block));
+  BlockExecutor &addBlock() {
+    blocks_.emplace_back(new BlockExecutor());
+    return *(blocks_.back());
   }
 
   void init(ReportGlobals &glob) {
+    glob.pages.emplace_back(HPDF_AddPage(glob.pdf));
     std::for_each(blocks_.begin(), blocks_.end(), InitCaller(glob));
   }
 
@@ -40,7 +42,7 @@ public:
     std::for_each(blocks_.begin(), blocks_.end(), EndCaller(glob));
   }
 
-  void finalize(ReportGlobals &glob) {
+  void finalize(ReportGlobals &glob, unsigned int pageNo) {
     std::for_each(blocks_.begin(), blocks_.end(), FinalizeCaller(glob));
   }
 

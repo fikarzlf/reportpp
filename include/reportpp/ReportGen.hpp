@@ -21,10 +21,8 @@
 #ifndef REPORT_GEN_HPP
 #define REPORT_GEN_HPP
 
-#include <cassert>
 #include <list>
 #include <memory>
-#include <stdexcept>
 
 #include "ReportGlobals.hpp"
 #include "executor/PageExecutor.hpp"
@@ -35,10 +33,16 @@ public:
   ReportGen();
   ~ReportGen();
 
-  void setFrontPage(const PageExecutor &front);
-  void setFirstPage(const DataPageExecutor &first);
-  void addDataPage (const DataPageExecutor &page);
-  void setLastPage (const PageExecutor &last);
+  bool hasFrontPage() const { return nullptr != frontPage_; }
+  PageExecutor &getFrontPage();
+
+  bool hasFirstPage() const { return hasFirstPage_; }
+  PageExecutor &getFirstPage();
+
+  PageExecutor &addDataPage();
+
+  bool hasLastPage() const { return nullptr != lastPage_; }
+  PageExecutor &getLastPage();
 
   void setReportHeaders(const std::list< std::string > &headers);
 
@@ -55,7 +59,7 @@ private:
 
   ReportGlobals globals;
   std::list< std::unique_ptr< DataPageExecutor > >::const_iterator curDataPage_;
-  bool hasFirstPage; ///< \c true if the first item of \c dataPages_ is a custom first page
+  bool hasFirstPage_; ///< \c true if the first item of \c dataPages_ is a custom first page
   bool isFinalized;  ///< \c true when the document has been finalized (no more changes are possible)
 
   void initPdfDocument();
