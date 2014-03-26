@@ -23,6 +23,7 @@
 
 #include <hpdf.h>
 #include <list>
+#include <string>
 
 struct ReportGlobals {
   HPDF_Doc pdf; ///< PDF document handler
