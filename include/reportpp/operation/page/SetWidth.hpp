@@ -19,17 +19,30 @@
  * Copyright (C) 2014, mickey <michele85@msn.com>
  */
 
-#ifndef DATAPAGE_EXECUTOR_HPP
-#define DATAPAGE_EXECUTOR_HPP
+#ifndef PDF_PAGE_SETWIDTH_OPERATION_H
+#define PDF_PAGE_SETWIDTH_OPERATION_H
 
-// #include "BlockExecutor.hpp"
+#include "../Operation.hpp"
 
-class DataPageExecutor: public PageExecutor {
+/** Modify the width of current page. As stated in libharu documentation the
+ * value must be between 3 and 14400.
+ */
+class PageSetWidth: public Operation {
 public:
-  DataPageExecutor() { }
-  ~DataPageExecutor() { }
+  PageSetWidth(float width):
+    Operation(),
+    width_(width)
+  { }
 
-  bool addRecord(ReportGlobals &globals, const std::list< std::string > &record) { return true; }
+  void init(ReportGlobals &glob) {
+    HPDF_Page_SetWidth(glob.pages.back(), width_);
+  }
+
+  void end     (ReportGlobals &glob) { }
+  void finalize(ReportGlobals &glob) { }
+
+private:
+  float width_;
 };
 
-#endif /* ifndef DATAPAGE_EXECUTOR_HPP */
+#endif /* ifndef PDF_PAGE_SETWIDTH_OPERATION_H */

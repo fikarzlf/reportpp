@@ -19,17 +19,13 @@
  * Copyright (C) 2014, mickey <michele85@msn.com>
  */
 
-#ifndef DATAPAGE_EXECUTOR_HPP
-#define DATAPAGE_EXECUTOR_HPP
+#ifndef EXECUTOR_MOVETO_HPP
+#define EXECUTOR_MOVETO_HPP
 
-// #include "BlockExecutor.hpp"
-
-class DataPageExecutor: public PageExecutor {
+class LineToOp : public Operation {
 public:
-  DataPageExecutor() { }
-  ~DataPageExecutor() { }
+  LineToOp();
+  ~LineToOp();
+}
 
-  bool addRecord(ReportGlobals &globals, const std::list< std::string > &record) { return true; }
-};
-
-#endif /* ifndef DATAPAGE_EXECUTOR_HPP */
+#endif /* EXECUTOR_MOVETO_HPP */
