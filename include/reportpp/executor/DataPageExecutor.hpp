@@ -16,7 +16,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  *
  * ---
- * Copyright (C) 2014, mickey <michele85@msn.com>
+ * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
 #ifndef DATAPAGE_EXECUTOR_HPP

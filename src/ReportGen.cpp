@@ -16,7 +16,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  *
  * ---
- * Copyright (C) 2014, mickey <michele85@msn.com>
+ * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
 #include <cassert>
@@ -64,10 +64,6 @@ PageExecutor &ReportGen::getLastPage() {
     lastPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
   }
   return *(lastPage_);
-}
-
-void ReportGen::setReportHeaders(const std::list< std::string > &headers) {
-  globals.headers = headers;
 }
 
 void ReportGen::addRecord(const std::list< std::string > &record) {

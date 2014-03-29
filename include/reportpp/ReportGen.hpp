@@ -16,7 +16,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  *
  * ---
- * Copyright (C) 2014, mickey <michele85@msn.com>
+ * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
 #ifndef REPORT_GEN_HPP
@@ -45,7 +45,7 @@ public:
   bool hasLastPage() const { return nullptr != lastPage_; }
   PageExecutor &getLastPage();
 
-  void setReportHeaders(const std::list< std::string > &headers);
+  void setReportHeaders(const std::list< std::string > &headers) { globals.headers = headers; }
 
   void addRecord(const std::list< std::string > &record);
 
