@@ -25,6 +25,7 @@
 #include "reportpp-pimpl.hxx"
 #include "reportpp/Report.hpp"
 #include "reportpp/ReportPage.hpp"
+#include "reportpp/PageBlock.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
@@ -41,7 +42,7 @@ main (int argc, char* argv[]) {
     //
     ::reportpp::Report report;
     ::reportpp::ReportPage reportPage;
-    ::reportpp::pageBlock_pimpl pageBlock_p;
+    ::reportpp::PageBlock pageBlock;
     ::reportpp::textElement_pimpl textElement_p;
     ::xml_schema::float_pimpl float_p;
     ::xml_schema::string_pimpl string_p;
@@ -63,17 +64,17 @@ main (int argc, char* argv[]) {
                    float_p,
                    float_p);
 
-    reportPage.parsers(pageBlock_p,
+    reportPage.parsers(pageBlock,
                        pageFormatParser,
                        float_p,
                        float_p,
                        float_p,
                        float_p);
 
-    pageBlock_p.parsers (textElement_p,
-                         textElement_p,
-                         shapeElement_p,
-                         imageElement_p);
+    pageBlock.parsers (textElement_p,
+                       textElement_p,
+                       shapeElement_p,
+                       imageElement_p);
 
     textElement_p.parsers (float_p,
                            float_p,

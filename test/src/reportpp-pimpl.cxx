@@ -161,37 +161,4 @@ namespace reportpp
   post_imageElement ()
   {
   }
-
-  // pageBlock_pimpl
-  //
-
-  void pageBlock_pimpl::
-  pre ()
-  {
-  }
-
-  void pageBlock_pimpl::
-  text ()
-  {
-  }
-
-  void pageBlock_pimpl::
-  label ()
-  {
-  }
-
-  void pageBlock_pimpl::
-  shape ()
-  {
-  }
-
-  void pageBlock_pimpl::
-  image ()
-  {
-  }
-
-  void pageBlock_pimpl::
-  post_pageBlock ()
-  {
-  }
 }

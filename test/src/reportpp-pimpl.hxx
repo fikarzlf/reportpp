@@ -98,28 +98,6 @@ namespace reportpp
     virtual void
     post_imageElement ();
   };
-
-  class pageBlock_pimpl: public virtual pageBlock_pskel
-  {
-    public:
-    virtual void
-    pre ();
-
-    virtual void
-    text ();
-
-    virtual void
-    label ();
-
-    virtual void
-    shape ();
-
-    virtual void
-    image ();
-
-    virtual void
-    post_pageBlock ();
-  };
 }
 
 #endif // REPORTPP_PIMPL_HXX
