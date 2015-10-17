@@ -20,4 +20,4 @@ target_link_libraries(generator-test
   reportpp
 )
 
-set_property(TARGET generator-test APPEND_STRING PROPERTY COMPILE_FLAGS "-std=c++11")
+set_property(TARGET generator-test APPEND_STRING PROPERTY COMPILE_FLAGS "-std=c++11 -O0 -g")

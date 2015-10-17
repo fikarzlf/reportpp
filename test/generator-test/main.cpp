@@ -20,13 +20,14 @@
  */
 
 #include <reportpp/ReportGen.hpp>
-#include <reportpp/operation/Rectangle.hpp>
+#include <reportpp/operation/page/Rectangle.hpp>
 #include <reportpp/operation/Stroke.hpp>
 #include <reportpp/operation/page/SetSize.hpp>
 
 void initFrontPage(PageExecutor &fp) {
   BlockExecutor &bEx = fp.addBlock();
-  fp.appendOperation(PaageSetSize(PageFormat::a5, PageDirection::landscape));
+  bEx.appendOperation(PageSetSize(PageSize::a5, PageDirection::landscape));
+  bEx.appendOperation(SetRGBFill(0.88, 0.88, 0.95));
   bEx.appendOperation(RectangleOp(15, 10, 30, 45));
   bEx.appendOperation(StrokeOp());
 }
@@ -34,8 +35,12 @@ void initFrontPage(PageExecutor &fp) {
 int main() {
   ReportGen gen;
   initFrontPage(gen.getFrontPage());
-  gen.addDataPage();
-  std::list< std::string > record = { "ciao" };
+  DataPageExecutor &dataPage = gen.addDataPage();
+  BlockExecutor &dpBlockEx = dataPage.addBlock();
+  RectangleOp rect(10, 20, 30, 40);
+  dpBlockEx.appendOperation(rect);
+  dpBlockEx.appendOperation(StrokeOp());
+  std::list< std::string > record = { "Hello, World!" };
   gen.addRecord(record);
   gen.finalizeDocument();
   gen.saveToFile("report.pdf");

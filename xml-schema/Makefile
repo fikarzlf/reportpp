@@ -3,7 +3,17 @@
 OUTPUT_DIR=src/reportpp/parser
 
 .PHONY: cxx-parser
-cxx-parser: reportpp.xsd types.map src/reportpp/parser
+cxx-parser: reportpp.xsd types.map ${OUTPUT_DIR}
+	xsdcxx cxx-parser \
+		--output-dir ${OUTPUT_DIR} \
+		--generate-inline \
+		--root-element-first \
+		--type-map types.map \
+		--namespace-map https://github.com/mmickey/reportpp=reportpp \
+		reportpp.xsd
+
+.PHONY: cxx-test
+cxx-test: clean reportpp.xsd types.map ${OUTPUT_DIR}
 	xsdcxx cxx-parser \
 		--output-dir ${OUTPUT_DIR} \
 		--generate-print-impl \
@@ -14,9 +24,9 @@ cxx-parser: reportpp.xsd types.map src/reportpp/parser
 		--namespace-map https://github.com/mmickey/reportpp=reportpp \
 		reportpp.xsd
 
-src/reportpp/parser:
+${OUTPUT_DIR}:
 	mkdir -p ${OUTPUT_DIR}
 
 .PHONY: clean
 clean:
-	rm -r ${OUTPUT_DIR}
+	rm -fr ${OUTPUT_DIR}
