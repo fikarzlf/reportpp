@@ -27,12 +27,11 @@ else()
 endif()
 
 add_executable(reportpp_tst
-    ${SRC_FILES}
     ${TEST_SRC}
 )
 
 target_link_libraries(reportpp_tst
-  hpdf
+  reportpp
   xerces-c
 )
 
