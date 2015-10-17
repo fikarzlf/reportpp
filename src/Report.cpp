@@ -19,7 +19,7 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#include "../include/reportpp/Report.hpp"
+#include "reportpp/Report.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
