@@ -47,14 +47,14 @@ PageExecutor &ReportGen::getFrontPage() {
   return *frontPage_;
 }
 
-PageExecutor &ReportGen::getFirstPage() {
+DataPageExecutor &ReportGen::getFirstPage() {
   if (!hasFirstPage_) {
     dataPages_.emplace_back(new DataPageExecutor());
   }
   return *(dataPages_.front());
 }
 
-PageExecutor &ReportGen::addDataPage() {
+DataPageExecutor &ReportGen::addDataPage() {
   dataPages_.emplace_back(new DataPageExecutor());
   return *(dataPages_.back());
 }
