@@ -24,7 +24,7 @@
 
 #include "reportpp-pimpl.hxx"
 #include "reportpp/parser/Report.hpp"
-#include "reportpp/parser/ReportPageParser.hpp"
+#include "reportpp/parser/ReportPage.hpp"
 #include "reportpp/parser/PageBlock.hpp"
 #include "types/PageFormatParser.hpp"
 
