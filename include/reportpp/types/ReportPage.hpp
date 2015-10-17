@@ -24,27 +24,78 @@
 
 #include "reportpp/types/PageFormat.hpp"
 
+#include <ostream>
+#include <vector>
+
 namespace reportpp {
 
 class ReportPage {
 public:
-    ReportPage() {}
+    ReportPage(): initialized(5, false) {}
+    ReportPage(PageFormat format, float marginTop, float marginBottom, float marginLeft, float marginRight):
+        pageFormat_(format),
+        margins(marginTop, marginBottom, marginLeft, marginRight),
+        initialized(5, true)
+    {}
+    ReportPage(const ReportPage &other, const ReportPage &defaults): ReportPage(other) { pullNotinitialized(defaults); }
     ~ReportPage() {}
     
     void setFormat(const PageFormat &pageFormat) { pageFormat_ = pageFormat; }
-    void setMarginTop(float marginTop) { marginTop_ = marginTop; }
-    void setMarginBottom(float marginBottom) { marginBottom_ = marginBottom; }
-    void setMarginLeft(float marginLeft) { marginLeft_ = marginLeft; }
-    void setMarginRight(float marginRight) { marginRight_ = marginRight; }
+    void setMarginTop(float marginTop) { margins.top = marginTop; }
+    void setMarginBottom(float marginBottom) { margins.bottom = marginBottom; }
+    void setMarginLeft(float marginLeft) { margins.left = marginLeft; }
+    void setMarginRight(float marginRight) { margins.right = marginRight; }
+    
+    PageFormat getFormat() const { return pageFormat_; }
+    float getMarginTop() const { return margins.top; }
+    float getMarginBottom() const { return margins.bottom; }
+    float getMarginLeft() const { return margins.left; }
+    float getMarginRight() const { return margins.right; }
+    
+    void pullNotinitialized(const ReportPage &parent) {
+        if (!initialized[0]) {
+            setFormat(parent.getFormat());
+            initialized[0] = true;
+        }
+        if (!initialized[1]) {
+            setMarginTop(parent.getMarginTop());
+            initialized[1] = true;
+        }
+        if (!initialized[2]) {
+            setMarginBottom(parent.getMarginBottom());
+            initialized[2] = true;
+        }
+        if (!initialized[3]) {
+            setMarginLeft(parent.getMarginLeft());
+            initialized[3] = true;
+        }
+        if (!initialized[4]) {
+            setMarginRight(parent.getMarginRight());
+            initialized[4] = true;
+        }
+    }
 
 private:
     PageFormat pageFormat_;
-    float marginTop_;
-    float marginBottom_;
-    float marginLeft_;
-    float marginRight_;
+    struct Rect {
+        float top;
+        float bottom;
+        float left;
+        float right;
+        
+        Rect() {}
+        Rect(float _top, float _bottom, float _left, float _right):
+            top(_top),
+            bottom(_bottom),
+            left(_left),
+            right(_right)
+        {}
+    } margins;
+    std::vector<bool> initialized;
 };
 
 } // namespace reportpp
+
+std::ostream& operator<<(std::ostream& os, const reportpp::ReportPage& obj);
 
 #endif /* ifndef REPORTPP_TYPES_REPORT_PAGE_H */

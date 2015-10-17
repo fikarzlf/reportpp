@@ -10,6 +10,7 @@ set(SRC_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/ReportPageParser.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/PageBlock.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/types/PageFormatParser.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/types/types_writer.cpp
   ${PARSER_SRC}
 )
 

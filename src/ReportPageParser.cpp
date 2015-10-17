@@ -56,7 +56,7 @@ void ReportPageParser::marginRight(float marginRight) {
 }
 
 ReportPage ReportPageParser::post_ReportPage() {
-    
+    return result_;
 }
 
 } // namespace reportpp

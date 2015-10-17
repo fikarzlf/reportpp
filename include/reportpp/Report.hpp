@@ -44,13 +44,7 @@ public:
     void post_reportType();
 
 private:
-    PageFormat pageFormat_;
-    struct {
-        float top;
-        float bottom;
-        float left;
-        float right;
-    } margins;
+    ReportPage defaultPageFormat;
 };
 
 } // namesapace reportpp

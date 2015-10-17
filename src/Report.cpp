@@ -29,47 +29,56 @@ namespace reportpp {
 
 void Report::pre() {
     std::clog << "Report::pre() called" << std::endl;
+    defaultPageFormat = ReportPage(PageFormat::a4, 0.0, 0.0, 0.0, 0.0);
 }
 
 void Report::frontPage(const ReportPage &frontPage) {
+    ReportPage front(frontPage, defaultPageFormat);
     std::clog << "Report::frontPage(): " << frontPage << std::endl;
+    std::clog << "Report::frontPage(): " << front << std::endl;
 }
 
 void Report::firstPage(const ReportPage &firstPage) {
-    std::clog << "Report::firstPage() called" << std::endl;
+    ReportPage first(firstPage, defaultPageFormat);
+    std::clog << "Report::firstPage(): " << firstPage << std::endl;
+    std::clog << "Report::firstPage(): " << first << std::endl;
 }
 
 void Report::dataPage(const ReportPage &dataPage) {
-    std::clog << "Report::dataPage() called" << std::endl;
+    ReportPage data(dataPage, defaultPageFormat);
+    std::clog << "Report::dataPage(): " << dataPage << std::endl;
+    std::clog << "Report::dataPage(): " << data << std::endl;
 }
 
 void Report::lastPage(const ReportPage &lastPage) {
-    std::clog << "Report::lastPage() called" << std::endl;
+    ReportPage last(lastPage, defaultPageFormat);
+    std::clog << "Report::lastPage(): " << lastPage << std::endl;
+    std::clog << "Report::lastPage(): " << last << std::endl;
 }
 
 void Report::pageFormat(const PageFormat &format) {
     std::clog << "Report::pageFormat() called with " << format << " arg" << std::endl;
-    pageFormat_ = format;
+    defaultPageFormat.setFormat(format);
 }
 
 void Report::marginTop(float value) {
     std::clog << "Report::marginTop() called with " << value << " arg" << std::endl;
-    margins.top = value;
+    defaultPageFormat.setMarginTop(value);
 }
 
 void Report::marginBottom(float value) {
     std::clog << "Report::marginBottom() called with " << value << " arg" << std::endl;
-    margins.bottom = value;
+    defaultPageFormat.setMarginBottom(value);
 }
 
 void Report::marginLeft(float value) {
     std::clog << "Report::marginLeft() called with " << value << " arg" << std::endl;
-    margins.left = value;
+    defaultPageFormat.setMarginLeft(value);
 }
 
 void Report::marginRight(float value) {
     std::clog << "Report::marginRight() called with " << value << " arg" << std::endl;
-    margins.right = value;
+    defaultPageFormat.setMarginRight(value);
 }
 
 void Report::post_reportType() {
