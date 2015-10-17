@@ -39,6 +39,9 @@ public:
     void marginRight(float);
     
     void post_ReportPage();
+
+private:
+    PageFormat pageFormat_;
 };
 
 } // namespace reportpp

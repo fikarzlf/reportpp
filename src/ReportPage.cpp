@@ -31,8 +31,8 @@ void ReportPage::block() {
 }
 
 void ReportPage::pageFormat(const PageFormat &pageFormat) {
-    // TODO
-    //
+    std::clog << "ReportPage::pageFormat() called with " << pageFormat << " arg" << std::endl;
+    pageFormat_ = pageFormat;
 }
 
 void ReportPage::marginTop(float marginTop) {
