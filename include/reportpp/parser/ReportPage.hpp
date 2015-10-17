@@ -33,7 +33,7 @@ public:
     
     void block();
     
-    void pageFormat(const PageFormat&);
+    void pageFormat(const ::reportpp::PageFormat&);
     void marginTop(float);
     void marginBottom(float);
     void marginLeft(float);

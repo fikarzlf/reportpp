@@ -25,14 +25,15 @@
 #include "reportpp/parser/reportpp-pskel.hxx"
 
 namespace reportpp {
+namespace parser {
 
-class PageFormatParser: public tPageFormat_pskel, public ::xml_schema::string_pimpl {
+class PageFormat: public tPageFormat_pskel, public ::xml_schema::string_pimpl {
 public:
     void pre() {}
-    PageFormat post_tPageFormat();
+    ::reportpp::PageFormat post_tPageFormat();
 };
 
-} // namespace reportpp
+}} // namespace reportpp::parser
 
 std::ostream& operator << (std::ostream& os, const reportpp::PageFormat& obj);
 

@@ -23,10 +23,10 @@
  */
 
 #include "reportpp-pimpl.hxx"
+#include "reportpp/parser/PageBlock.hpp"
+#include "reportpp/parser/PageFormat.hpp"
 #include "reportpp/parser/Report.hpp"
 #include "reportpp/parser/ReportPage.hpp"
-#include "reportpp/parser/PageBlock.hpp"
-#include "types/PageFormatParser.hpp"
 
 #include <iostream>
 
@@ -50,7 +50,7 @@ main (int argc, char* argv[]) {
     ::reportpp::shapeElement_pimpl shapeElement_p;
     ::reportpp::shapeType_pimpl shapeType_p;
     ::reportpp::imageElement_pimpl imageElement_p;
-    ::reportpp::PageFormatParser pageFormatParser;
+    ::reportpp::parser::PageFormat pageFormat;
 
     // Connect the parsers together.
     //
@@ -58,14 +58,14 @@ main (int argc, char* argv[]) {
                    reportPage,
                    reportPage,
                    reportPage,
-                   pageFormatParser,
+                   pageFormat,
                    float_p,
                    float_p,
                    float_p,
                    float_p);
 
     reportPage.parsers(pageBlock,
-                       pageFormatParser,
+                       pageFormat,
                        float_p,
                        float_p,
                        float_p,

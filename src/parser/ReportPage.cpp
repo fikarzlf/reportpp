@@ -19,8 +19,8 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
+#include "reportpp/parser/PageFormat.hpp"
 #include "reportpp/parser/ReportPage.hpp"
-#include "types/PageFormatParser.hpp"
 
 #include <iostream>
 
@@ -31,7 +31,7 @@ void ReportPage::block() {
     std::clog << "ReportPage::block() called" << std::endl;
 }
 
-void ReportPage::pageFormat(const PageFormat &pageFormat) {
+void ReportPage::pageFormat(const ::reportpp::PageFormat &pageFormat) {
     std::clog << "ReportPage::pageFormat() called with " << pageFormat << " arg" << std::endl;
     result_.setFormat(pageFormat);
 }
