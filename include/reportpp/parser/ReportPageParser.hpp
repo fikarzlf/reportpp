@@ -25,8 +25,9 @@
 #include "reportpp/parser/reportpp-pskel.hxx"
 
 namespace reportpp {
+namespace parser {
 
-class ReportPageParser: public ReportPage_pskel {
+class ReportPage: public ReportPage_pskel {
 public:
     void pre() {}
     
@@ -38,12 +39,12 @@ public:
     void marginLeft(float);
     void marginRight(float);
     
-    ReportPage post_ReportPage();
+    ::reportpp::ReportPage post_ReportPage();
 
 private:
-    ReportPage result_;
+    ::reportpp::ReportPage result_;
 };
 
-} // namespace reportpp
+}} // namespace reportpp::parser
 
 #endif // REPORTPP_REPORT_PAGE_H

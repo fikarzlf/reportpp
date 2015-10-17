@@ -25,6 +25,7 @@
 #include "reportpp/parser/reportpp-pskel.hxx"
 
 namespace reportpp {
+namespace parser {
 
 class PageBlock: public pageBlock_pskel {
 public:
@@ -38,6 +39,6 @@ public:
     void post_pageBlock();
 };
 
-} // namespace reportpp
+}} // namespace reportpp::parser
 
 #endif // REPORTPP_PAGE_BLOCK_H

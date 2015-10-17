@@ -25,6 +25,7 @@
 #include "reportpp/parser/reportpp-pskel.hxx"
 
 namespace reportpp {
+namespace parser {
 
 class Report: public reportType_pskel {
 public:
@@ -47,6 +48,6 @@ private:
     ReportPage defaultPageFormat;
 };
 
-} // namesapace reportpp
+}} // namesapace reportpp::parser
 
 #endif // REPORTPP_REPORT_IMPL_H

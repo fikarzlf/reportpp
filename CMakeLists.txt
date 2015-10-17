@@ -6,9 +6,9 @@ option(REPORTPP_BUILD_SHARED "Build shared object insted static library" FALSE)
 file(GLOB_RECURSE PARSER_SRC ${CMAKE_CURRENT_SOURCE_DIR}/xml-schema/src/*.c*)
 
 set(SRC_FILES
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/Report.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/ReportPageParser.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/src/PageBlock.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/parser/Report.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/parser/ReportPageParser.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/parser/PageBlock.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/types/PageFormatParser.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/types/types_writer.cpp
   ${PARSER_SRC}

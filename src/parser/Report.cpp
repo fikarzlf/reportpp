@@ -19,13 +19,14 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#include "reportpp/Report.hpp"
+#include "reportpp/parser/Report.hpp"
 #include "reportpp/types/ReportPage.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
 
 namespace reportpp {
+namespace parser {
 
 void Report::pre() {
     std::clog << "Report::pre() called" << std::endl;
@@ -85,4 +86,4 @@ void Report::post_reportType() {
     std::clog << "Report::post_reportType() called" << std::endl;
 }
 
-} // namespace reportpp
+}} // namespace reportpp::parser

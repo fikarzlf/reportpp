@@ -19,44 +19,45 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#include "reportpp/ReportPageParser.hpp"
+#include "reportpp/parser/ReportPageParser.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
 
 namespace reportpp {
+namespace parser {
 
-void ReportPageParser::block() {
-    std::clog << "ReportPageParser::block() called" << std::endl;
+void ReportPage::block() {
+    std::clog << "ReportPage::block() called" << std::endl;
 }
 
-void ReportPageParser::pageFormat(const PageFormat &pageFormat) {
-    std::clog << "ReportPageParser::pageFormat() called with " << pageFormat << " arg" << std::endl;
+void ReportPage::pageFormat(const PageFormat &pageFormat) {
+    std::clog << "ReportPage::pageFormat() called with " << pageFormat << " arg" << std::endl;
     result_.setFormat(pageFormat);
 }
 
-void ReportPageParser::marginTop(float marginTop) {
-    std::cout << "ReportPageParser::marginTop(): " << marginTop << std::endl;
+void ReportPage::marginTop(float marginTop) {
+    std::cout << "ReportPage::marginTop(): " << marginTop << std::endl;
     result_.setMarginTop(marginTop);
 }
 
-void ReportPageParser::marginBottom(float marginBottom) {
-    std::cout << "ReportPageParser::marginBottom(): " << marginBottom << std::endl;
+void ReportPage::marginBottom(float marginBottom) {
+    std::cout << "ReportPage::marginBottom(): " << marginBottom << std::endl;
     result_.setMarginBottom(marginBottom);
 }
 
-void ReportPageParser::marginLeft(float marginLeft) {
-    std::cout << "ReportPageParser::marginLeft(): " << marginLeft << std::endl;
+void ReportPage::marginLeft(float marginLeft) {
+    std::cout << "ReportPage::marginLeft(): " << marginLeft << std::endl;
     result_.setMarginLeft(marginLeft);
 }
 
-void ReportPageParser::marginRight(float marginRight) {
-    std::cout << "ReportPageParser::marginRight(): " << marginRight << std::endl;
+void ReportPage::marginRight(float marginRight) {
+    std::cout << "ReportPage::marginRight(): " << marginRight << std::endl;
     result_.setMarginRight(marginRight);
 }
 
-ReportPage ReportPageParser::post_ReportPage() {
+::reportpp::ReportPage ReportPage::post_ReportPage() {
     return result_;
 }
 
-} // namespace reportpp
+}} // namespace reportpp::parser

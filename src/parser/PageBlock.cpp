@@ -19,11 +19,12 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#include "reportpp/PageBlock.hpp"
+#include "reportpp/parser/PageBlock.hpp"
 
 #include <iostream>
 
 namespace reportpp {
+namespace parser {
 
 void PageBlock::text() {
     std::clog << "PageBlock::text() called" << std::endl;
@@ -45,4 +46,4 @@ void PageBlock::post_pageBlock() {
     std::clog << "PageBlock::post_pageBlock() called" << std::endl;
 }
 
-} // namespace reportpp
+}} // namespace reportpp::parser
