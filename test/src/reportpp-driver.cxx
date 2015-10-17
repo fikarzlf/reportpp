@@ -24,7 +24,7 @@
 
 #include "reportpp-pimpl.hxx"
 #include "reportpp/Report.hpp"
-#include "reportpp/ReportPage.hpp"
+#include "reportpp/ReportPageParser.hpp"
 #include "reportpp/PageBlock.hpp"
 #include "types/PageFormatParser.hpp"
 
@@ -41,7 +41,7 @@ main (int argc, char* argv[]) {
     // Instantiate individual parsers.
     //
     ::reportpp::Report report;
-    ::reportpp::ReportPage reportPage;
+    ::reportpp::ReportPageParser reportPageParser;
     ::reportpp::PageBlock pageBlock;
     ::reportpp::textElement_pimpl textElement_p;
     ::xml_schema::float_pimpl float_p;
@@ -54,22 +54,22 @@ main (int argc, char* argv[]) {
 
     // Connect the parsers together.
     //
-    report.parsers(reportPage,
-                   reportPage,
-                   reportPage,
-                   reportPage,
+    report.parsers(reportPageParser,
+                   reportPageParser,
+                   reportPageParser,
+                   reportPageParser,
                    pageFormatParser,
                    float_p,
                    float_p,
                    float_p,
                    float_p);
 
-    reportPage.parsers(pageBlock,
-                       pageFormatParser,
-                       float_p,
-                       float_p,
-                       float_p,
-                       float_p);
+    reportPageParser.parsers(pageBlock,
+                             pageFormatParser,
+                             float_p,
+                             float_p,
+                             float_p,
+                             float_p);
 
     pageBlock.parsers (textElement_p,
                        textElement_p,

@@ -19,40 +19,32 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef REPORTPP_REPORT_IMPL_H
-#define REPORTPP_REPORT_IMPL_H
+#ifndef REPORTPP_TYPES_REPORT_PAGE_H
+#define REPORTPP_TYPES_REPORT_PAGE_H
 
-#include "reportpp/parser/reportpp-pskel.hxx"
+#include "reportpp/types/PageFormat.hpp"
 
 namespace reportpp {
 
-class Report: public reportType_pskel {
+class ReportPage {
 public:
-    void pre();
-
-    void frontPage(const ReportPage&);
-    void firstPage(const ReportPage&);
-    void dataPage(const ReportPage&);
-    void lastPage(const ReportPage&);
-
-    void pageFormat(const PageFormat&);
-    void marginTop(float);
-    void marginBottom(float);
-    void marginLeft(float);
-    void marginRight(float);
-
-    void post_reportType();
+    ReportPage() {}
+    ~ReportPage() {}
+    
+    void setFormat(const PageFormat &pageFormat) { pageFormat_ = pageFormat; }
+    void setMarginTop(float marginTop) { marginTop_ = marginTop; }
+    void setMarginBottom(float marginBottom) { marginBottom_ = marginBottom; }
+    void setMarginLeft(float marginLeft) { marginLeft_ = marginLeft; }
+    void setMarginRight(float marginRight) { marginRight_ = marginRight; }
 
 private:
     PageFormat pageFormat_;
-    struct {
-        float top;
-        float bottom;
-        float left;
-        float right;
-    } margins;
+    float marginTop_;
+    float marginBottom_;
+    float marginLeft_;
+    float marginRight_;
 };
 
-} // namesapace reportpp
+} // namespace reportpp
 
-#endif // REPORTPP_REPORT_IMPL_H
+#endif /* ifndef REPORTPP_TYPES_REPORT_PAGE_H */

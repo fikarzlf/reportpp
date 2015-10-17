@@ -5,4 +5,7 @@ namespace https://github.com/mmickey/reportpp
 
   include "reportpp/types/Graphics.hpp";
   shapeType ::reportpp::ShapeType;
+  
+  include "reportpp/types/ReportPage.hpp";
+  ReportPage ::reportpp::ReportPage;
 }

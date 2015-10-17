@@ -26,7 +26,7 @@
 
 namespace reportpp {
 
-class ReportPage: public ReportPage_pskel {
+class ReportPageParser: public ReportPage_pskel {
 public:
     void pre() {}
     
@@ -38,10 +38,10 @@ public:
     void marginLeft(float);
     void marginRight(float);
     
-    void post_ReportPage();
+    ReportPage post_ReportPage();
 
 private:
-    PageFormat pageFormat_;
+    ReportPage result_;
 };
 
 } // namespace reportpp

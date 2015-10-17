@@ -20,6 +20,7 @@
  */
 
 #include "reportpp/Report.hpp"
+#include "reportpp/types/ReportPage.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
@@ -30,19 +31,19 @@ void Report::pre() {
     std::clog << "Report::pre() called" << std::endl;
 }
 
-void Report::frontPage() {
-    std::clog << "Report::frontPage() called" << std::endl;
+void Report::frontPage(const ReportPage &frontPage) {
+    std::clog << "Report::frontPage(): " << frontPage << std::endl;
 }
 
-void Report::firstPage() {
+void Report::firstPage(const ReportPage &firstPage) {
     std::clog << "Report::firstPage() called" << std::endl;
 }
 
-void Report::dataPage() {
+void Report::dataPage(const ReportPage &dataPage) {
     std::clog << "Report::dataPage() called" << std::endl;
 }
 
-void Report::lastPage() {
+void Report::lastPage(const ReportPage &lastPage) {
     std::clog << "Report::lastPage() called" << std::endl;
 }
 
