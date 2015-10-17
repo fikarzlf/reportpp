@@ -38,9 +38,9 @@ public:
   PageExecutor &getFrontPage();
 
   bool hasFirstPage() const { return hasFirstPage_; }
-  PageExecutor &getFirstPage();
+  DataPageExecutor &getFirstPage();
 
-  PageExecutor &addDataPage();
+  DataPageExecutor &addDataPage();
 
   bool hasLastPage() const { return nullptr != lastPage_; }
   PageExecutor &getLastPage();
