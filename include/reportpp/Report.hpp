@@ -5,7 +5,7 @@
 
 namespace reportpp {
 
-class Report: public reportpp::reportType_pskel {
+class Report: public reportType_pskel {
 public:
     void pre();
 
@@ -21,6 +21,15 @@ public:
     void marginRight(float);
 
     void post_reportType();
+
+private:
+    PageFormat pageFormat_;
+    struct {
+        float top;
+        float bottom;
+        float left;
+        float right;
+    } margins;
 };
 
 } // namesapace reportpp
