@@ -24,25 +24,23 @@
 
 #include "reportpp-pimpl.hxx"
 #include "reportpp/Report.hpp"
+#include "reportpp/ReportPage.hpp"
 #include "types/PageFormatParser.hpp"
 
 #include <iostream>
 
 int
-main (int argc, char* argv[])
-{
-  if (argc != 2)
-  {
+main (int argc, char* argv[]) {
+  if (argc != 2) {
     std::cerr << "usage: " << argv[0] << " file.xml" << std::endl;
     return 1;
   }
 
-  try
-  {
+  try {
     // Instantiate individual parsers.
     //
     ::reportpp::Report report;
-    ::reportpp::ReportPage_pimpl ReportPage_p;
+    ::reportpp::ReportPage reportPage;
     ::reportpp::pageBlock_pimpl pageBlock_p;
     ::reportpp::textElement_pimpl textElement_p;
     ::xml_schema::float_pimpl float_p;
@@ -55,22 +53,22 @@ main (int argc, char* argv[])
 
     // Connect the parsers together.
     //
-    report.parsers (ReportPage_p,
-                    ReportPage_p,
-                    ReportPage_p,
-                    ReportPage_p,
-                    pageFormatParser,
-                    float_p,
-                    float_p,
-                    float_p,
-                    float_p);
+    report.parsers(reportPage,
+                   reportPage,
+                   reportPage,
+                   reportPage,
+                   pageFormatParser,
+                   float_p,
+                   float_p,
+                   float_p,
+                   float_p);
 
-    ReportPage_p.parsers (pageBlock_p,
-                          pageFormatParser,
-                          float_p,
-                          float_p,
-                          float_p,
-                          float_p);
+    reportPage.parsers(pageBlock_p,
+                       pageFormatParser,
+                       float_p,
+                       float_p,
+                       float_p,
+                       float_p);
 
     pageBlock_p.parsers (textElement_p,
                          textElement_p,
@@ -105,14 +103,10 @@ main (int argc, char* argv[])
     report.pre ();
     doc_p.parse (argv[1]);
     report.post_reportType ();
-  }
-  catch (const ::xml_schema::exception& e)
-  {
+  } catch (const ::xml_schema::exception& e) {
     std::cerr << e << std::endl;
     return 1;
-  }
-  catch (const std::ios_base::failure&)
-  {
+  } catch (const std::ios_base::failure&) {
     std::cerr << argv[1] << ": error: io failure" << std::endl;
     return 1;
   }

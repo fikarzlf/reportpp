@@ -7,6 +7,7 @@ file(GLOB_RECURSE PARSER_SRC ${CMAKE_CURRENT_SOURCE_DIR}/xml-schema/src/*.c*)
 
 set(SRC_FILES
   ${CMAKE_CURRENT_SOURCE_DIR}/src/Report.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/ReportPage.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/src/types/PageFormatParser.cpp
   ${PARSER_SRC}
 )

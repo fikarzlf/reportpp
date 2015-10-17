@@ -120,34 +120,6 @@ namespace reportpp
     virtual void
     post_pageBlock ();
   };
-
-  class ReportPage_pimpl: public virtual ReportPage_pskel
-  {
-    public:
-    virtual void
-    pre ();
-
-    virtual void
-    block ();
-
-    virtual void
-    pageFormat (const ::reportpp::PageFormat&);
-
-    virtual void
-    marginTop (float);
-
-    virtual void
-    marginBottom (float);
-
-    virtual void
-    marginLeft (float);
-
-    virtual void
-    marginRight (float);
-
-    virtual void
-    post_ReportPage ();
-  };
 }
 
 #endif // REPORTPP_PIMPL_HXX
