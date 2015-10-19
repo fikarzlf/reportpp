@@ -22,6 +22,8 @@
 #ifndef TYPES_REPORTPP_H
 #define TYPES_REPORTPP_H
 
+#include <ostream>
+
 namespace reportpp {
 
 enum class PageFormat {
@@ -40,5 +42,7 @@ enum class PageFormat {
 };
 
 } // namespace reportpp
+
+std::ostream& operator<<(std::ostream &os, const reportpp::PageFormat &obj);
 
 #endif /* ifndef TYPES_REPORTPP_H */
