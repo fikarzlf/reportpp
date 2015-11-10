@@ -1,10 +1,13 @@
 # TODO integrate this workflow into cmake configuration
 
 OUTPUT_DIR=src/reportpp/parser
+XSD_EXECUTABLE=xsdcxx
 
 .PHONY: cxx-parser
 cxx-parser: reportpp.xsd types.map ${OUTPUT_DIR}
-	xsdcxx cxx-parser \
+	${XSD_EXECUTABLE} cxx-parser \
+		--std c++11 \
+		--generate-validation \
 		--output-dir ${OUTPUT_DIR} \
 		--generate-inline \
 		--root-element-first \
@@ -14,7 +17,9 @@ cxx-parser: reportpp.xsd types.map ${OUTPUT_DIR}
 
 .PHONY: cxx-test
 cxx-test: clean reportpp.xsd types.map ${OUTPUT_DIR}
-	xsdcxx cxx-parser \
+	${XSD_EXECUTABLE} cxx-parser \
+		--std c++11 \
+		--generate-validation \
 		--output-dir ${OUTPUT_DIR} \
 		--generate-print-impl \
 		--generate-inline \
