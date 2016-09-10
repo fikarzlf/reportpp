@@ -21,7 +21,10 @@
 
 #include <cassert>
 #include <sstream>
-#include "../include/reportpp/ReportGen.hpp"
+
+#include "reportpp/ReportGen.hpp"
+
+namespace reportpp {
 
 // error handling method
 void hpdf_error_handler(HPDF_STATUS error_no, HPDF_STATUS detail_no, void *user_data) {
@@ -116,3 +119,5 @@ void ReportGen::moveItrToNextPage() {
     if (hasFirstPage_) curDataPage_++; // skip custom first page when looping
   }
 }
+
+} // namespace reportpp

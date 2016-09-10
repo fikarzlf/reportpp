@@ -23,6 +23,7 @@
 #define REPORTPP_REPORT_IMPL_H
 
 #include "reportpp/parser/reportpp-pskel.hxx"
+#include "reportpp/ReportGen.hpp"
 
 namespace reportpp {
 namespace parser {
@@ -46,6 +47,8 @@ public:
 
 private:
     ::reportpp::ReportPage defaultPageFormat;
+
+    ::reportpp::ReportGen reportGen_;
 };
 
 }} // namesapace reportpp::parser

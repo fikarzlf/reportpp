@@ -25,9 +25,11 @@
 #include <list>
 #include <memory>
 
-#include "ReportGlobals.hpp"
-#include "executor/PageExecutor.hpp"
-#include "executor/DataPageExecutor.hpp"
+#include "reportpp/ReportGlobals.hpp"
+#include "reportpp/executor/PageExecutor.hpp"
+#include "reportpp/executor/DataPageExecutor.hpp"
+
+namespace reportpp {
 
 class ReportGen {
 public:
@@ -66,5 +68,7 @@ private:
   void initPdfDocument();
   void moveItrToNextPage();
 };
+
+} // namespace reportpp
 
 #endif /* ifndef REPORT_GEN_HPP */

@@ -25,8 +25,8 @@
 #include <algorithm>
 #include <list>
 #include <memory>
-#include "../operation/Operation.hpp"
-#include "../support/Callers.hpp"
+#include "reportpp/templates/operation/Operation.hpp"
+#include "reportpp/support/Callers.hpp"
 
 class BlockExecutor {
 public:
