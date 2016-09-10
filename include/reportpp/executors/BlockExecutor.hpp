@@ -28,6 +28,9 @@
 #include "reportpp/templates/operation/Operation.hpp"
 #include "reportpp/support/Callers.hpp"
 
+namespace reportpp {
+namespace executors {
+
 class BlockExecutor {
 public:
   BlockExecutor() { }
@@ -35,7 +38,7 @@ public:
 
   template< typename T >
   void appendOperation(const T &op) {
-    operations_.emplace_back(new T(op));
+    operations_.emplace_back(T(op));
   }
 
   void init(ReportGlobals &glob) {
@@ -51,7 +54,9 @@ public:
   }
 
 private:
-  std::list< std::unique_ptr< Operation > > operations_;
+  std::list< Operation > operations_;
 };
+
+}} // namespace reportpp::executors
 
 #endif /* ifndef BLOCK_EXECUTOR_HPP */

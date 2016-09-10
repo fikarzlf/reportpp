@@ -1,5 +1,5 @@
 #include "reportpp/types/PageFormat.hpp"
-#include "reportpp/types/ReportPage.hpp"
+#include "reportpp/types/ReportFormat.hpp"
 
 #include <ostream>
 
@@ -22,7 +22,7 @@ std::ostream& operator<<(std::ostream &os, const reportpp::types::PageFormat &ob
    return os;
 }
 
-std::ostream& operator<<(std::ostream &os, const reportpp::types::ReportPage &obj) {
+std::ostream& operator<<(std::ostream &os, const reportpp::types::ReportFormat &obj) {
     os << "ReportPage{format=" << obj.getFormat();
     os << ", margins(TBLR)=[" << obj.getMarginTop() << ", " << obj.getMarginBottom();
     os << ", " << obj.getMarginLeft() << ", " << obj.getMarginRight() << "]}";

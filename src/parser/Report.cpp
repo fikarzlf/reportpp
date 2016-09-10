@@ -21,7 +21,7 @@
 
 #include "reportpp/parser/PageFormat.hpp"
 #include "reportpp/parser/Report.hpp"
-#include "reportpp/types/ReportPage.hpp"
+#include "reportpp/executors/PageExecutor.hpp"
 
 #include <iostream>
 
@@ -30,60 +30,48 @@ namespace parser {
 
 void Report::pre() {
     std::clog << "Report::pre() called" << std::endl;
-    defaultPageFormat = ::reportpp::types::ReportPage(::reportpp::types::PageFormat::a4, 0.0, 0.0, 0.0, 0.0);
+    defaultReportFormat = ::reportpp::types::ReportFormat(::reportpp::types::PageFormat::a4, 0.0, 0.0, 0.0, 0.0);
 }
 
-void Report::frontPage(const ::reportpp::types::ReportPage &frontPage) {
-    ::reportpp::types::ReportPage front(frontPage, defaultPageFormat);
-    std::clog << "Report::frontPage(): " << frontPage << std::endl;
-    std::clog << "Report::frontPage(): " << front << std::endl;
+void Report::frontPage(const ::reportpp::executors::PageExecutor &frontPage) {
+    reportGen_.setFrontPage(frontPage, defaultReportFormat);
 }
 
-void Report::firstPage(const ::reportpp::types::ReportPage &firstPage) {
-    ::reportpp::types::ReportPage first(firstPage, defaultPageFormat);
-    std::clog << "Report::firstPage(): " << firstPage << std::endl;
-    std::clog << "Report::firstPage(): " << first << std::endl;
+void Report::firstPage(const ::reportpp::executors::PageExecutor &firstPage) {
+    reportGen_.setFirstPage(firstPage, defaultReportFormat);
 }
 
-void Report::dataPage(const ::reportpp::types::ReportPage &dataPage) {
-    ::reportpp::types::ReportPage data(dataPage, defaultPageFormat);
-    std::clog << "Report::dataPage(): " << dataPage << std::endl;
-    std::clog << "Report::dataPage(): " << data << std::endl;
+void Report::dataPage(const ::reportpp::executors::PageExecutor &dataPage) {
+    reportGen_.setDataPage(dataPage, defaultReportFormat);
 }
 
-void Report::lastPage(const ::reportpp::types::ReportPage &lastPage) {
-    ::reportpp::types::ReportPage last(lastPage, defaultPageFormat);
-    std::clog << "Report::lastPage(): " << lastPage << std::endl;
-    std::clog << "Report::lastPage(): " << last << std::endl;
+void Report::lastPage(const ::reportpp::executors::PageExecutor &lastPage) {
+    reportGen_.setLastPage(lastPage, defaultReportFormat);
 }
 
 void Report::pageFormat(const ::reportpp::types::PageFormat &format) {
     std::clog << "Report::pageFormat() called with " << format << " arg" << std::endl;
-    defaultPageFormat.setFormat(format);
+    defaultReportFormat.setFormat(format);
 }
 
 void Report::marginTop(float value) {
     std::clog << "Report::marginTop() called with " << value << " arg" << std::endl;
-    defaultPageFormat.setMarginTop(value);
+    defaultReportFormat.setMarginTop(value);
 }
 
 void Report::marginBottom(float value) {
     std::clog << "Report::marginBottom() called with " << value << " arg" << std::endl;
-    defaultPageFormat.setMarginBottom(value);
+    defaultReportFormat.setMarginBottom(value);
 }
 
 void Report::marginLeft(float value) {
     std::clog << "Report::marginLeft() called with " << value << " arg" << std::endl;
-    defaultPageFormat.setMarginLeft(value);
+    defaultReportFormat.setMarginLeft(value);
 }
 
 void Report::marginRight(float value) {
     std::clog << "Report::marginRight() called with " << value << " arg" << std::endl;
-    defaultPageFormat.setMarginRight(value);
-}
-
-void Report::post_reportType() {
-    std::clog << "Report::post_reportType() called" << std::endl;
+    defaultReportFormat.setMarginRight(value);
 }
 
 }} // namespace reportpp::parser

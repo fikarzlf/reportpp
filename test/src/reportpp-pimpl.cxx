@@ -17,6 +17,7 @@ namespace reportpp
   void textElement_pimpl::
   pre ()
   {
+    std::cout << "textElement_pimpl::pre()" << std::endl;
   }
 
   void textElement_pimpl::
@@ -63,12 +64,14 @@ namespace reportpp
   void shapeType_pimpl::
   pre ()
   {
+    std::cout << "shapeElement_pimpl::pre()" << std::endl;
   }
 
   ::reportpp::types::ShapeType shapeType_pimpl::
   post_shapeType ()
   {
     const ::std::string& v (post_string ());
+    std::cout << v << std::endl;
 
     // TODO
     //
@@ -117,6 +120,7 @@ namespace reportpp
   void shapeElement_pimpl::
   post_shapeElement ()
   {
+    std::cout << "shapeElement_pimpl::post_shapeElement()" << std::endl;
   }
 
   // imageElement_pimpl
@@ -125,6 +129,7 @@ namespace reportpp
   void imageElement_pimpl::
   pre ()
   {
+    std::cout << "imageElement_pimpl::pre()" << std::endl;
   }
 
   void imageElement_pimpl::
@@ -160,5 +165,6 @@ namespace reportpp
   void imageElement_pimpl::
   post_imageElement ()
   {
+    std::cout << "imageElement_pimpl::post_imageElement()" << std::endl;
   }
 }

@@ -96,14 +96,14 @@ main (int argc, char* argv[]) {
 
     // Parse the XML document.
     //
-    ::xml_schema::document doc_p (
-      report,
-      "https://github.com/mmickey/reportpp",
-      "report");
+    ::xml_schema::document doc_p(report, "https://github.com/mmickey/reportpp", "report");
 
-    report.pre ();
-    doc_p.parse (argv[1]);
-    report.post_reportType ();
+    report.pre();
+    doc_p.parse(argv[1]);
+    reportpp::ReportGen reportGen = report.post_ReportType();
+
+    reportGen.finalizeDocument();
+    reportGen.saveToFile("test.pdf");
   } catch (const ::xml_schema::exception& e) {
     std::cerr << e << std::endl;
     return 1;
@@ -112,4 +112,3 @@ main (int argc, char* argv[]) {
     return 1;
   }
 }
-

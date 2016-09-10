@@ -24,6 +24,9 @@
 
 // #include "BlockExecutor.hpp"
 
+namespace reportpp {
+namespace executors {
+
 class DataPageExecutor: public PageExecutor {
 public:
   DataPageExecutor() { }
@@ -31,5 +34,7 @@ public:
 
   bool addRecord(ReportGlobals &globals, const std::list< std::string > &record) { return true; }
 };
+
+}} //namespace reportpp::executors
 
 #endif /* ifndef DATAPAGE_EXECUTOR_HPP */

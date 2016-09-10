@@ -29,20 +29,20 @@ namespace parser {
 
 class ReportPage: public ReportPage_pskel {
 public:
-    void pre() {}
-    
-    void block();
-    
-    void pageFormat(const ::reportpp::types::PageFormat&);
-    void marginTop(float);
-    void marginBottom(float);
-    void marginLeft(float);
-    void marginRight(float);
-    
-    ::reportpp::types::ReportPage post_ReportPage();
+    void pre() { }
+
+    void block() { }
+
+    void pageFormat(const ::reportpp::types::PageFormat &pageFormat) { result_.setFormat(pageFormat); }
+    void marginTop   (float margin) { result_.setMarginTop   (margin); }
+    void marginBottom(float margin) { result_.setMarginBottom(margin); }
+    void marginLeft  (float margin) { result_.setMarginLeft  (margin); }
+    void marginRight (float margin) { result_.setMarginRight (margin); }
+
+    ::reportpp::executors::PageExecutor post_ReportPage() { return result_; }
 
 private:
-    ::reportpp::types::ReportPage result_;
+    ::reportpp::executors::PageExecutor result_;
 };
 
 }} // namespace reportpp::parser

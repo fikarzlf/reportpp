@@ -36,9 +36,9 @@
  */
 class Operation {
 public:
-  virtual void init    (ReportGlobals &glob) = 0;
-  virtual void end     (ReportGlobals &glob) = 0;
-  virtual void finalize(ReportGlobals &glob) = 0;
+  virtual void init    (ReportGlobals &glob) { }
+  virtual void end     (ReportGlobals &glob) { }
+  virtual void finalize(ReportGlobals &glob) { }
 };
 
 #endif /* ifndef PDF_OPERATION_H */

@@ -80,7 +80,7 @@
 
   <xs:complexType name="ReportPage">
     <xs:sequence>
-      <xs:element name="block" type="pageBlock" maxOccurs="unbounded" />
+      <xs:element name="block" type="pageBlock" maxOccurs="unbounded"/>
     </xs:sequence>
     <!-- each report page can override the report settings for page format -->
     <xs:attribute name="pageFormat" type="tPageFormat"/>
@@ -90,7 +90,7 @@
     <xs:attribute name="marginRight"  type="xs:float"/>
   </xs:complexType>
 
-  <xs:complexType name="reportType">
+  <xs:complexType name="ReportType">
     <xs:sequence>
       <xs:element name="frontPage" type="ReportPage" minOccurs="0"/>
       <xs:element name="firstPage" type="ReportPage" minOccurs="0"/>
@@ -104,5 +104,5 @@
     <xs:attribute name="marginRight"  type="xs:float" default="0"/>
   </xs:complexType>
 
-  <xs:element name="report" type="reportType"/>
+  <xs:element name="report" type="ReportType"/>
 </xs:schema>

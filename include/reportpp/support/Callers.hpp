@@ -29,7 +29,7 @@ public:
   InitCaller(ReportGlobals &glob): glob_(glob) { }
 
   template< typename T >
-  void operator()(T &item) { item->init(glob_); }
+  void operator()(T &item) { item.init(glob_); }
 private:
   ReportGlobals &glob_;
 };
@@ -39,7 +39,7 @@ public:
   EndCaller(ReportGlobals &glob): glob_(glob) { }
 
   template< typename T >
-  void operator()(T &item) { item->end(glob_); }
+  void operator()(T &item) { item.end(glob_); }
 private:
   ReportGlobals &glob_;
 };
@@ -49,7 +49,7 @@ public:
   FinalizeCaller(ReportGlobals &glob): glob_(glob) { }
 
   template< typename T >
-  void operator()(T &item) { item->finalize(glob_); }
+  void operator()(T &item) { item.finalize(glob_); }
 private:
   ReportGlobals &glob_;
 };

@@ -24,18 +24,19 @@
 
 #include "reportpp/parser/reportpp-pskel.hxx"
 #include "reportpp/ReportGen.hpp"
+#include "reportpp/types/ReportFormat.hpp"
 
 namespace reportpp {
 namespace parser {
 
-class Report: public reportType_pskel {
+class Report: public ReportType_pskel {
 public:
     void pre();
 
-    void frontPage(const ::reportpp::types::ReportPage&);
-    void firstPage(const ::reportpp::types::ReportPage&);
-    void dataPage(const  ::reportpp::types::ReportPage&);
-    void lastPage(const  ::reportpp::types::ReportPage&);
+    void frontPage(const ::reportpp::executors::PageExecutor&);
+    void firstPage(const ::reportpp::executors::PageExecutor&);
+    void dataPage (const ::reportpp::executors::PageExecutor&);
+    void lastPage (const ::reportpp::executors::PageExecutor&);
 
     void pageFormat(const ::reportpp::types::PageFormat&);
     void marginTop(float);
@@ -43,10 +44,10 @@ public:
     void marginLeft(float);
     void marginRight(float);
 
-    void post_reportType();
+    ::reportpp::ReportGen post_ReportType() { return reportGen_; }
 
 private:
-    ::reportpp::types::ReportPage defaultPageFormat;
+    ::reportpp::types::ReportFormat defaultReportFormat;
 
     ::reportpp::ReportGen reportGen_;
 };

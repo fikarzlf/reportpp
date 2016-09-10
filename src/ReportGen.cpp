@@ -24,6 +24,8 @@
 
 #include "reportpp/ReportGen.hpp"
 
+using reportpp::executors::PageExecutor;
+
 namespace reportpp {
 
 // error handling method
@@ -39,35 +41,56 @@ ReportGen::ReportGen():
   isFinalized(false)
 { }
 
+ReportGen::ReportGen(const ReportGen &other) {
+  // TODO
+}
+
 ReportGen::~ReportGen() {
   if (nullptr != globals.pdf) HPDF_Free(globals.pdf);
 }
 
-PageExecutor &ReportGen::getFrontPage() {
-  if (nullptr == frontPage_) {
-    frontPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
-  }
-  return *frontPage_;
+
+void ReportGen::setFrontPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat) {
+  // TODO
 }
 
-DataPageExecutor &ReportGen::getFirstPage() {
-  if (!hasFirstPage_) {
-    dataPages_.emplace_back(new DataPageExecutor());
-  }
-  return *(dataPages_.front());
+void ReportGen::setFirstPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat) {
+  // TODO
 }
 
-DataPageExecutor &ReportGen::addDataPage() {
-  dataPages_.emplace_back(new DataPageExecutor());
-  return *(dataPages_.back());
+void ReportGen::setDataPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat) {
+  // TODO
 }
 
-PageExecutor &ReportGen::getLastPage() {
-  if (nullptr == lastPage_) {
-    lastPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
-  }
-  return *(lastPage_);
+void ReportGen::setLastPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat) {
+  // TODO
 }
+
+// PageExecutor &ReportGen::getFrontPage() {
+//   if (nullptr == frontPage_) {
+//     frontPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
+//   }
+//   return *frontPage_;
+// }
+// 
+// DataPageExecutor &ReportGen::getFirstPage() {
+//   if (!hasFirstPage_) {
+//     dataPages_.emplace_back(new DataPageExecutor());
+//   }
+//   return *(dataPages_.front());
+// }
+// 
+// DataPageExecutor &ReportGen::addDataPage() {
+//   dataPages_.emplace_back(new DataPageExecutor());
+//   return *(dataPages_.back());
+// }
+// 
+// PageExecutor &ReportGen::getLastPage() {
+//   if (nullptr == lastPage_) {
+//     lastPage_ = std::unique_ptr< PageExecutor >(new PageExecutor());
+//   }
+//   return *(lastPage_);
+// }
 
 void ReportGen::addRecord(const std::list< std::string > &record) {
   if (nullptr == globals.pdf) initPdfDocument();

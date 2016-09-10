@@ -26,26 +26,21 @@
 #include <memory>
 
 #include "reportpp/ReportGlobals.hpp"
-#include "reportpp/executor/PageExecutor.hpp"
-#include "reportpp/executor/DataPageExecutor.hpp"
+#include "reportpp/executors/PageExecutor.hpp"
+#include "reportpp/executors/DataPageExecutor.hpp"
 
 namespace reportpp {
 
 class ReportGen {
 public:
   ReportGen();
+  ReportGen(const ReportGen&);
   ~ReportGen();
 
-  bool hasFrontPage() const { return nullptr != frontPage_; }
-  PageExecutor &getFrontPage();
-
-  bool hasFirstPage() const { return hasFirstPage_; }
-  DataPageExecutor &getFirstPage();
-
-  DataPageExecutor &addDataPage();
-
-  bool hasLastPage() const { return nullptr != lastPage_; }
-  PageExecutor &getLastPage();
+  void setFrontPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat);
+  void setFirstPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat);
+  void setDataPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat);
+  void setLastPage(const reportpp::executors::PageExecutor &page, reportpp::types::ReportFormat defaultFormat);
 
   void setReportHeaders(const std::list< std::string > &headers) { globals.headers = headers; }
 
@@ -56,12 +51,12 @@ public:
   void saveToFile(const std::string &fileName) const;
 
 private:
-  std::unique_ptr< PageExecutor >                  frontPage_; ///< Front page executor
-  std::list< std::unique_ptr< DataPageExecutor > > dataPages_; ///< list of data page executors
-  std::unique_ptr< PageExecutor >                  lastPage_;  ///< Last page executor
+  std::unique_ptr< reportpp::executors::PageExecutor >                  frontPage_; ///< Front page executor
+  std::list< std::unique_ptr< reportpp::executors::DataPageExecutor > > dataPages_; ///< list of data page executors
+  std::unique_ptr< reportpp::executors::PageExecutor >                  lastPage_;  ///< Last page executor
 
   ReportGlobals globals;
-  std::list< std::unique_ptr< DataPageExecutor > >::const_iterator curDataPage_;
+  std::list< std::unique_ptr< reportpp::executors::DataPageExecutor > >::const_iterator curDataPage_;
   bool hasFirstPage_; ///< \c true if the first item of \c dataPages_ is a custom first page
   bool isFinalized;  ///< \c true when the document has been finalized (no more changes are possible)
 

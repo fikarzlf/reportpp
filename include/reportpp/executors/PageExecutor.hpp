@@ -22,16 +22,30 @@
 #ifndef PAGE_EXECUTOR_HPP
 #define PAGE_EXECUTOR_HPP
 
-#include "BlockExecutor.hpp"
+#include "reportpp/executors/BlockExecutor.hpp"
+#include "reportpp/types/ReportFormat.hpp"
+
+namespace reportpp {
+namespace executors {
 
 class PageExecutor {
 public:
   PageExecutor() { }
   ~PageExecutor() { }
 
+  void setDefaultFormat(const reportpp::types::ReportFormat &defValues) {
+    reportFormat.pullNotInitialized(defValues);
+  }
+
+  void setFormat(const reportpp::types::PageFormat &pageFormat) { reportFormat.setFormat(pageFormat); }
+  void setMarginTop   (const float margin) { reportFormat.setMarginTop   (margin); }
+  void setMarginBottom(const float margin) { reportFormat.setMarginBottom(margin); }
+  void setMarginLeft  (const float margin) { reportFormat.setMarginLeft  (margin); }
+  void setMarginRight (const float margin) { reportFormat.setMarginRight (margin); }
+
   BlockExecutor &addBlock() {
-    blocks_.emplace_back(new BlockExecutor());
-    return *(blocks_.back());
+    blocks_.emplace_back(BlockExecutor());
+    return blocks_.back();
   }
 
   void init(ReportGlobals &glob) {
@@ -48,7 +62,10 @@ public:
   }
 
 private:
-  std::list< std::unique_ptr< BlockExecutor > > blocks_;
+  reportpp::types::ReportFormat reportFormat;
+  std::list< BlockExecutor > blocks_;
 };
+
+}} // namespace reportpp::executors
 
 #endif /* ifndef PAGE_EXECUTOR_HPP */

@@ -19,8 +19,8 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef REPORTPP_TYPES_REPORT_PAGE_H
-#define REPORTPP_TYPES_REPORT_PAGE_H
+#ifndef REPORTPP_TYPES_REPORT_FORMAT_H
+#define REPORTPP_TYPES_REPORT_FORMAT_H
 
 #include "reportpp/types/PageFormat.hpp"
 
@@ -30,16 +30,16 @@
 namespace reportpp {
 namespace types {
 
-class ReportPage {
+class ReportFormat {
 public:
-    ReportPage(): initialized(5, false) {}
-    ReportPage(PageFormat format, float marginTop, float marginBottom, float marginLeft, float marginRight):
+    ReportFormat(): initialized(5, false) {}
+    ReportFormat(PageFormat format, float marginTop, float marginBottom, float marginLeft, float marginRight):
         pageFormat_(format),
         margins(marginTop, marginBottom, marginLeft, marginRight),
         initialized(5, true)
     {}
-    ReportPage(const ReportPage &other, const ReportPage &defaults): ReportPage(other) { pullNotinitialized(defaults); }
-    ~ReportPage() {}
+    ReportFormat(const ReportFormat &other, const ReportFormat &defaults): ReportFormat(other) { pullNotInitialized(defaults); }
+    ~ReportFormat() { }
     
     void setFormat(const PageFormat &pageFormat) { pageFormat_ = pageFormat; }
     void setMarginTop(float marginTop) { margins.top = marginTop; }
@@ -53,7 +53,7 @@ public:
     float getMarginLeft() const { return margins.left; }
     float getMarginRight() const { return margins.right; }
     
-    void pullNotinitialized(const ReportPage &parent) {
+    void pullNotInitialized(const ReportFormat &parent) {
         if (!initialized[0]) {
             setFormat(parent.getFormat());
             initialized[0] = true;
@@ -97,6 +97,6 @@ private:
 
 }} // namespace reportpp::types
 
-std::ostream& operator<<(std::ostream& os, const reportpp::types::ReportPage& obj);
+std::ostream& operator<<(std::ostream &os, const reportpp::types::ReportFormat &obj);
 
-#endif /* ifndef REPORTPP_TYPES_REPORT_PAGE_H */
+#endif /* ifndef REPORTPP_TYPES_REPORT_FORMAT_H */
