@@ -30,34 +30,34 @@ namespace parser {
 
 void Report::pre() {
     std::clog << "Report::pre() called" << std::endl;
-    defaultPageFormat = ::reportpp::ReportPage(::reportpp::PageFormat::a4, 0.0, 0.0, 0.0, 0.0);
+    defaultPageFormat = ::reportpp::types::ReportPage(::reportpp::types::PageFormat::a4, 0.0, 0.0, 0.0, 0.0);
 }
 
-void Report::frontPage(const ::reportpp::ReportPage &frontPage) {
-    ::reportpp::ReportPage front(frontPage, defaultPageFormat);
+void Report::frontPage(const ::reportpp::types::ReportPage &frontPage) {
+    ::reportpp::types::ReportPage front(frontPage, defaultPageFormat);
     std::clog << "Report::frontPage(): " << frontPage << std::endl;
     std::clog << "Report::frontPage(): " << front << std::endl;
 }
 
-void Report::firstPage(const ::reportpp::ReportPage &firstPage) {
-    ::reportpp::ReportPage first(firstPage, defaultPageFormat);
+void Report::firstPage(const ::reportpp::types::ReportPage &firstPage) {
+    ::reportpp::types::ReportPage first(firstPage, defaultPageFormat);
     std::clog << "Report::firstPage(): " << firstPage << std::endl;
     std::clog << "Report::firstPage(): " << first << std::endl;
 }
 
-void Report::dataPage(const ::reportpp::ReportPage &dataPage) {
-    ::reportpp::ReportPage data(dataPage, defaultPageFormat);
+void Report::dataPage(const ::reportpp::types::ReportPage &dataPage) {
+    ::reportpp::types::ReportPage data(dataPage, defaultPageFormat);
     std::clog << "Report::dataPage(): " << dataPage << std::endl;
     std::clog << "Report::dataPage(): " << data << std::endl;
 }
 
-void Report::lastPage(const ::reportpp::ReportPage &lastPage) {
-    ::reportpp::ReportPage last(lastPage, defaultPageFormat);
+void Report::lastPage(const ::reportpp::types::ReportPage &lastPage) {
+    ::reportpp::types::ReportPage last(lastPage, defaultPageFormat);
     std::clog << "Report::lastPage(): " << lastPage << std::endl;
     std::clog << "Report::lastPage(): " << last << std::endl;
 }
 
-void Report::pageFormat(const ::reportpp::PageFormat &format) {
+void Report::pageFormat(const ::reportpp::types::PageFormat &format) {
     std::clog << "Report::pageFormat() called with " << format << " arg" << std::endl;
     defaultPageFormat.setFormat(format);
 }

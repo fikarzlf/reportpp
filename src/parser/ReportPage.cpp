@@ -31,7 +31,7 @@ void ReportPage::block() {
     std::clog << "ReportPage::block() called" << std::endl;
 }
 
-void ReportPage::pageFormat(const ::reportpp::PageFormat &pageFormat) {
+void ReportPage::pageFormat(const ::reportpp::types::PageFormat &pageFormat) {
     std::clog << "ReportPage::pageFormat() called with " << pageFormat << " arg" << std::endl;
     result_.setFormat(pageFormat);
 }
@@ -56,7 +56,7 @@ void ReportPage::marginRight(float marginRight) {
     result_.setMarginRight(marginRight);
 }
 
-::reportpp::ReportPage ReportPage::post_ReportPage() {
+::reportpp::types::ReportPage ReportPage::post_ReportPage() {
     return result_;
 }
 

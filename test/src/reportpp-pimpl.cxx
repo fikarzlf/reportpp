@@ -65,7 +65,7 @@ namespace reportpp
   {
   }
 
-  ::reportpp::ShapeType shapeType_pimpl::
+  ::reportpp::types::ShapeType shapeType_pimpl::
   post_shapeType ()
   {
     const ::std::string& v (post_string ());
@@ -84,7 +84,7 @@ namespace reportpp
   }
 
   void shapeElement_pimpl::
-  type (const ::reportpp::ShapeType& type)
+  type (const ::reportpp::types::ShapeType& type)
   {
     // TODO
     //

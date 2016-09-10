@@ -19,31 +19,33 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef TYPES_REPORTPP_H
-#define TYPES_REPORTPP_H
+#ifndef PDF_PAGE_SETDASH_OPERATION_H
+#define PDF_PAGE_SETDASH_OPERATION_H
 
-#include <ostream>
+#include "../Operation.hpp"
 
-namespace reportpp {
-namespace types {
+class SetDash: public Operation {
+public:
+  SetDash(const HPDF_UINT16 *dash_ptn, HPDF_UINT num_param, HPDF_UINT phase):
+    Operation(),
+    *dash_ptn_(*dash_ptn),
+    num_param_(num_param),
+    phase_(phase),
 
-enum class PageFormat {
-  letter,
-  legal,
-  a3,
-  a4,
-  a5,
-  b4,
-  b5,
-  executive,
-  us4x6,
-  us4x8,
-  us5x7,
-  comm10
+  { }
+
+  void init(ReportGlobals &glob) {
+    HPDF_Page_SetDash(glob.pages.back(), *dash_ptn_, num_param_, phase_);
+  }
+
+  void end     (ReportGlobals &glob) { }
+  void finalize(ReportGlobals &glob) { }
+
+private:
+  const HPDF_UINT16 *dash_ptn_;
+  HPDF_UINT num_param_;
+  HPDF_UINT phase_;
+
 };
 
-}} // namespace reportpp::types
-
-std::ostream& operator<<(std::ostream &os, const reportpp::types::PageFormat &obj);
-
-#endif /* ifndef TYPES_REPORTPP_H */
+#endif /* ifndef PDF_PAGE_SETDASH_OPERATION_H */

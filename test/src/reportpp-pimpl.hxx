@@ -45,7 +45,7 @@ namespace reportpp
     virtual void
     pre ();
 
-    virtual ::reportpp::ShapeType
+    virtual ::reportpp::types::ShapeType
     post_shapeType ();
   };
 
@@ -56,7 +56,7 @@ namespace reportpp
     pre ();
 
     virtual void
-    type (const ::reportpp::ShapeType&);
+    type (const ::reportpp::types::ShapeType&);
 
     virtual void
     x (float);

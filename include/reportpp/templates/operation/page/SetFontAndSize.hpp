@@ -19,31 +19,31 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef TYPES_REPORTPP_H
-#define TYPES_REPORTPP_H
+#ifndef PDF_PAGE_SETFONTANDSIZE_OPERATION_H
+#define PDF_PAGE_SETFONTANDSIZE_OPERATION_H
 
-#include <ostream>
+#include "../Operation.hpp"
 
-namespace reportpp {
-namespace types {
+class SetFontAndSize: public Operation {
+public:
+  SetFontAndSize(HPDF_Font font, HPDF_REAL size):
+    Operation(),
+    font_(font),
+    size_(size),
 
-enum class PageFormat {
-  letter,
-  legal,
-  a3,
-  a4,
-  a5,
-  b4,
-  b5,
-  executive,
-  us4x6,
-  us4x8,
-  us5x7,
-  comm10
+  { }
+
+  void init(ReportGlobals &glob) {
+    HPDF_Page_SetFontAndSize(glob.pages.back(), font_, size_);
+  }
+
+  void end     (ReportGlobals &glob) { }
+  void finalize(ReportGlobals &glob) { }
+
+private:
+  HPDF_Font font_;
+  HPDF_REAL size_;
+
 };
 
-}} // namespace reportpp::types
-
-std::ostream& operator<<(std::ostream &os, const reportpp::types::PageFormat &obj);
-
-#endif /* ifndef TYPES_REPORTPP_H */
+#endif /* ifndef PDF_PAGE_SETFONTANDSIZE_OPERATION_H */

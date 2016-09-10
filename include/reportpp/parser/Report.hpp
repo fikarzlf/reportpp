@@ -32,12 +32,12 @@ class Report: public reportType_pskel {
 public:
     void pre();
 
-    void frontPage(const ::reportpp::ReportPage&);
-    void firstPage(const ::reportpp::ReportPage&);
-    void dataPage(const ::reportpp::ReportPage&);
-    void lastPage(const ::reportpp::ReportPage&);
+    void frontPage(const ::reportpp::types::ReportPage&);
+    void firstPage(const ::reportpp::types::ReportPage&);
+    void dataPage(const  ::reportpp::types::ReportPage&);
+    void lastPage(const  ::reportpp::types::ReportPage&);
 
-    void pageFormat(const ::reportpp::PageFormat&);
+    void pageFormat(const ::reportpp::types::PageFormat&);
     void marginTop(float);
     void marginBottom(float);
     void marginLeft(float);
@@ -46,7 +46,7 @@ public:
     void post_reportType();
 
 private:
-    ::reportpp::ReportPage defaultPageFormat;
+    ::reportpp::types::ReportPage defaultPageFormat;
 
     ::reportpp::ReportGen reportGen_;
 };

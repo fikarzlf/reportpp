@@ -33,16 +33,16 @@ public:
     
     void block();
     
-    void pageFormat(const ::reportpp::PageFormat&);
+    void pageFormat(const ::reportpp::types::PageFormat&);
     void marginTop(float);
     void marginBottom(float);
     void marginLeft(float);
     void marginRight(float);
     
-    ::reportpp::ReportPage post_ReportPage();
+    ::reportpp::types::ReportPage post_ReportPage();
 
 private:
-    ::reportpp::ReportPage result_;
+    ::reportpp::types::ReportPage result_;
 };
 
 }} // namespace reportpp::parser

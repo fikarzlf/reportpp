@@ -28,6 +28,7 @@
 #include <vector>
 
 namespace reportpp {
+namespace types {
 
 class ReportPage {
 public:
@@ -94,8 +95,8 @@ private:
     std::vector<bool> initialized;
 };
 
-} // namespace reportpp
+}} // namespace reportpp::types
 
-std::ostream& operator<<(std::ostream& os, const reportpp::ReportPage& obj);
+std::ostream& operator<<(std::ostream& os, const reportpp::types::ReportPage& obj);
 
 #endif /* ifndef REPORTPP_TYPES_REPORT_PAGE_H */

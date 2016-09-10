@@ -23,12 +23,13 @@
 #define TYPES_GRAPHICS_HPP
 
 namespace reportpp {
+namespace types {
 
 enum /* class */ ShapeType {
   RECTANGLE,
   CIRCLE
 };
 
-} // namespace reportpp
+}} // namespace reportpp::types
 
 #endif /* ifndef TYPES_GRAPHICS_HPP */

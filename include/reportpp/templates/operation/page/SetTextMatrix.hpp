@@ -19,31 +19,39 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef TYPES_REPORTPP_H
-#define TYPES_REPORTPP_H
+#ifndef PDF_PAGE_SETTEXTMATRIX_OPERATION_H
+#define PDF_PAGE_SETTEXTMATRIX_OPERATION_H
 
-#include <ostream>
+#include "../Operation.hpp"
 
-namespace reportpp {
-namespace types {
+class SetTextMatrix: public Operation {
+public:
+  SetTextMatrix(HPDF_REAL a, HPDF_REAL b, HPDF_REAL c, HPDF_REAL d, HPDF_REAL x, HPDF_REAL y):
+    Operation(),
+    a_(a),
+    b_(b),
+    c_(c),
+    d_(d),
+    x_(x),
+    y_(y),
 
-enum class PageFormat {
-  letter,
-  legal,
-  a3,
-  a4,
-  a5,
-  b4,
-  b5,
-  executive,
-  us4x6,
-  us4x8,
-  us5x7,
-  comm10
+  { }
+
+  void init(ReportGlobals &glob) {
+    HPDF_Page_SetTextMatrix(glob.pages.back(), a_, b_, c_, d_, x_, y_);
+  }
+
+  void end     (ReportGlobals &glob) { }
+  void finalize(ReportGlobals &glob) { }
+
+private:
+  HPDF_REAL a_;
+  HPDF_REAL b_;
+  HPDF_REAL c_;
+  HPDF_REAL d_;
+  HPDF_REAL x_;
+  HPDF_REAL y_;
+
 };
 
-}} // namespace reportpp::types
-
-std::ostream& operator<<(std::ostream &os, const reportpp::types::PageFormat &obj);
-
-#endif /* ifndef TYPES_REPORTPP_H */
+#endif /* ifndef PDF_PAGE_SETTEXTMATRIX_OPERATION_H */

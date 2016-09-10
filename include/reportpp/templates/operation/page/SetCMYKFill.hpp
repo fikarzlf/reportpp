@@ -19,31 +19,35 @@
  * Copyright (C) 2014, mickey <mickey.mouse-1985@libero.it>
  */
 
-#ifndef TYPES_REPORTPP_H
-#define TYPES_REPORTPP_H
+#ifndef PDF_PAGE_SETCMYKFILL_OPERATION_H
+#define PDF_PAGE_SETCMYKFILL_OPERATION_H
 
-#include <ostream>
+#include "../Operation.hpp"
 
-namespace reportpp {
-namespace types {
+class SetCMYKFill: public Operation {
+public:
+  SetCMYKFill(HPDF_REAL c, HPDF_REAL m, HPDF_REAL y, HPDF_REAL k):
+    Operation(),
+    c_(c),
+    m_(m),
+    y_(y),
+    k_(k),
 
-enum class PageFormat {
-  letter,
-  legal,
-  a3,
-  a4,
-  a5,
-  b4,
-  b5,
-  executive,
-  us4x6,
-  us4x8,
-  us5x7,
-  comm10
+  { }
+
+  void init(ReportGlobals &glob) {
+    HPDF_Page_SetCMYKFill(glob.pages.back(), c_, m_, y_, k_);
+  }
+
+  void end     (ReportGlobals &glob) { }
+  void finalize(ReportGlobals &glob) { }
+
+private:
+  HPDF_REAL c_;
+  HPDF_REAL m_;
+  HPDF_REAL y_;
+  HPDF_REAL k_;
+
 };
 
-}} // namespace reportpp::types
-
-std::ostream& operator<<(std::ostream &os, const reportpp::types::PageFormat &obj);
-
-#endif /* ifndef TYPES_REPORTPP_H */
+#endif /* ifndef PDF_PAGE_SETCMYKFILL_OPERATION_H */

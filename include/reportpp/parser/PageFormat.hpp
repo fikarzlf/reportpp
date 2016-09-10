@@ -30,11 +30,11 @@ namespace parser {
 class PageFormat: public tPageFormat_pskel, public ::xml_schema::string_pimpl {
 public:
     void pre() {}
-    ::reportpp::PageFormat post_tPageFormat();
+    reportpp::types::PageFormat post_tPageFormat();
 };
 
 }} // namespace reportpp::parser
 
-std::ostream& operator << (std::ostream& os, const reportpp::PageFormat& obj);
+std::ostream& operator << (std::ostream& os, const reportpp::types::PageFormat& obj);
 
 #endif // REPORTPP_TYPES_PAGEFORMAT_H

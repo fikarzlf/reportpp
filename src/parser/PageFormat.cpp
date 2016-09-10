@@ -27,22 +27,22 @@
 namespace reportpp {
 namespace parser {
 
-::reportpp::PageFormat PageFormat::post_tPageFormat() {
-    ::reportpp::PageFormat result;
+::reportpp::types::PageFormat PageFormat::post_tPageFormat() {
+    ::reportpp::types::PageFormat result;
     const std::string &value(post_string());
 
-    if (value == "letter") result = ::reportpp::PageFormat::letter;
-    else if (value == "legal") result = ::reportpp::PageFormat::legal;
-    else if (value == "a3") result = ::reportpp::PageFormat::a3;
-    else if (value == "a4") result = ::reportpp::PageFormat::a4;
-    else if (value == "a5") result = ::reportpp::PageFormat::a5;
-    else if (value == "b4") result = ::reportpp::PageFormat::b4;
-    else if (value == "b5") result = ::reportpp::PageFormat::b5;
-    else if (value == "executive") result = ::reportpp::PageFormat::executive;
-    else if (value == "us4x6") result = ::reportpp::PageFormat::us4x6;
-    else if (value == "us4x8") result = ::reportpp::PageFormat::us4x8;
-    else if (value == "us5x7") result = ::reportpp::PageFormat::us5x7;
-    else if (value == "comm10") result = ::reportpp::PageFormat::comm10;
+    if (value == "letter") result = ::reportpp::types::PageFormat::letter;
+    else if (value == "legal") result = ::reportpp::types::PageFormat::legal;
+    else if (value == "a3") result = ::reportpp::types::PageFormat::a3;
+    else if (value == "a4") result = ::reportpp::types::PageFormat::a4;
+    else if (value == "a5") result = ::reportpp::types::PageFormat::a5;
+    else if (value == "b4") result = ::reportpp::types::PageFormat::b4;
+    else if (value == "b5") result = ::reportpp::types::PageFormat::b5;
+    else if (value == "executive") result = ::reportpp::types::PageFormat::executive;
+    else if (value == "us4x6") result = ::reportpp::types::PageFormat::us4x6;
+    else if (value == "us4x8") result = ::reportpp::types::PageFormat::us4x8;
+    else if (value == "us5x7") result = ::reportpp::types::PageFormat::us5x7;
+    else if (value == "comm10") result = ::reportpp::types::PageFormat::comm10;
     else throw std::runtime_error(std::string(value) + " is not a valid PageFormat value");
     return result;
 }
